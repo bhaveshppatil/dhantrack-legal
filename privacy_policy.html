@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy – DhanTrack</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f7fa; color: #1a1a2e; line-height: 1.75; }
+    .header { background: linear-gradient(135deg, #0A1E3D 0%, #0D47A1 55%, #0097A7 100%); padding: 36px 24px 28px; }
+    .header h1 { color: #fff; font-size: 22px; font-weight: 700; letter-spacing: 0.3px; }
+    .header .app { color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 4px; }
+    .header .meta { color: rgba(255,255,255,0.6); font-size: 12px; margin-top: 8px; }
+    .container { max-width: 760px; margin: 0 auto; padding: 24px 20px 48px; }
+    .card { background: #fff; border-radius: 12px; padding: 20px 22px; margin-bottom: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.07); }
+    .highlight { background: #E3F2FD; border-left: 4px solid #0D47A1; padding: 14px 18px; border-radius: 8px; margin-bottom: 20px; font-size: 14px; color: #0A1E3D; }
+    h2 { font-size: 16px; font-weight: 700; color: #0D47A1; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    h3 { font-size: 14px; font-weight: 600; color: #1a1a2e; margin: 14px 0 8px; }
+    p { font-size: 14px; color: #444; margin-bottom: 10px; }
+    ul { padding-left: 18px; margin-bottom: 10px; }
+    li { font-size: 14px; color: #444; margin-bottom: 6px; }
+    a { color: #0D47A1; }
+    .badge { display: inline-block; background: #E3F2FD; color: #0D47A1; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 20px; }
+    .footer { text-align: center; font-size: 12px; color: #999; padding: 20px 0 8px; }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🔒 Privacy Policy</h1>
+  <div class="app">DhanTrack – Budget &amp; Money Manager</div>
+  <div class="meta">Effective: March 8, 2026 &nbsp;·&nbsp; Last Updated: March 28, 2026</div>
+</div>
+
+<div class="container">
+
+  <div class="highlight">
+    DhanTrack is committed to your privacy. This policy explains what data we collect, why we collect it, and how you can control it. We do <strong>not</strong> sell your data or use it for advertising.
+  </div>
+
+  <div class="card">
+    <h2>1. Information We Collect</h2>
+    <h3>Account Information</h3>
+    <ul>
+      <li><strong>Display Name</strong> — entered by you or pulled from your Google account</li>
+      <li><strong>Email Address</strong> — used for authentication and account identification</li>
+      <li><strong>Phone Number</strong> — only when you use Phone/OTP sign-in; used solely for verification and not stored beyond Firebase Authentication</li>
+      <li><strong>Firebase UID</strong> — a unique identifier to associate your data in the cloud</li>
+    </ul>
+    <h3>Financial Data (entered by you)</h3>
+    <ul>
+      <li><strong>Transactions</strong> — description, category, amount, and date</li>
+      <li><strong>Budgets</strong> — category name, spending limit, and amount spent</li>
+      <li><strong>Account Balances</strong> — bank name, account type (Savings/Demat), and monthly balance snapshot</li>
+    </ul>
+    <p>We do <strong>not</strong> collect bank account numbers, card numbers, PINs, tax IDs, income details, or any sensitive financial credentials.</p>
+    <h3>Preferences</h3>
+    <ul>
+      <li><strong>Currency</strong> — your selected display currency (default: INR)</li>
+    </ul>
+    <h3>Usage &amp; Diagnostic Data</h3>
+    <ul>
+      <li><strong>Firebase Analytics</strong> — anonymous event data including screen views, feature usage, button interactions, and aggregated transaction amounts (used to understand usage patterns). Events are associated with your Firebase UID, not your name or email.</li>
+      <li><strong>Firebase Crashlytics</strong> — crash reports including device model, OS version, app version, and your email address (set as a diagnostic key) to help us identify and fix bugs.</li>
+    </ul>
+    <h3>Device &amp; Ad Identifiers</h3>
+    <p>Google Play Services libraries bundled with the app may access the Android Advertising ID and ad attribution services. DhanTrack does <strong>not</strong> use these identifiers for advertising. They are incidentally requested by the underlying Google Play Services SDK and are not used or shared by us.</p>
+  </div>
+
+  <div class="card">
+    <h2>2. How We Use Your Information</h2>
+    <ul>
+      <li>To create and manage your account</li>
+      <li>To store, display, and back up your financial data</li>
+      <li>To sync your data across devices via Firebase Realtime Database</li>
+      <li>To restore your data when you log in on a new device</li>
+      <li>To run a 24-hour background sync to keep your cloud backup current</li>
+      <li>To diagnose crashes and improve app stability</li>
+      <li>To understand feature usage and improve the app experience</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>3. Data Storage &amp; Security</h2>
+    <h3>On Your Device</h3>
+    <p>Your data is stored in a local SQLite database (Room) and encrypted DataStore. Both are excluded from Android device backups for your security. Only DhanTrack can access this data.</p>
+    <h3>Home Screen Widget</h3>
+    <p>If you add the DhanTrack widget to your home screen, it reads your locally stored balance and transaction summary. No additional data is collected or transmitted by the widget.</p>
+    <h3>In the Cloud</h3>
+    <p>Your data is synced to Firebase Realtime Database under a path scoped exclusively to your UID (<code>users/{your-uid}/</code>). Only you — when authenticated — can read or write your data.</p>
+    <h3>Security Measures</h3>
+    <ul>
+      <li>All Firebase communication uses <strong>TLS/HTTPS encryption</strong></li>
+      <li>Authentication via <strong>Firebase Authentication</strong> (OAuth 2.0)</li>
+      <li>Cloud data access protected by <strong>Firebase Security Rules</strong></li>
+      <li>Session data stored in <strong>encrypted DataStore</strong></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>4. Third-Party Services</h2>
+    <ul>
+      <li><strong>Firebase Authentication</strong> — <a href="https://firebase.google.com/support/privacy">Firebase Privacy Policy</a></li>
+      <li><strong>Firebase Realtime Database</strong> — <a href="https://firebase.google.com/support/privacy">Firebase Privacy Policy</a></li>
+      <li><strong>Firebase Analytics</strong> — <a href="https://firebase.google.com/support/privacy">Firebase Privacy Policy</a></li>
+      <li><strong>Firebase Crashlytics</strong> — <a href="https://firebase.google.com/support/privacy">Firebase Privacy Policy</a></li>
+      <li><strong>Firebase Remote Config</strong> — used to remotely deliver app configuration, including privacy policy and terms content — <a href="https://firebase.google.com/support/privacy">Firebase Privacy Policy</a></li>
+      <li><strong>Google Sign-In</strong> — <a href="https://policies.google.com/privacy">Google Privacy Policy</a></li>
+      <li><strong>Google Play Services</strong> — core Android services that may access the Advertising ID; we do not use it for advertising — <a href="https://policies.google.com/privacy">Google Privacy Policy</a></li>
+    </ul>
+    <p>We do not use any advertising SDKs, data broker services, or social media trackers.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Data Retention</h2>
+    <ul>
+      <li><strong>Active account:</strong> Data retained as long as your account exists</li>
+      <li><strong>Account deletion:</strong> Firebase Auth record removed immediately; Realtime Database data deleted within 30 days; local data removed on app uninstall</li>
+      <li><strong>Analytics:</strong> Retained by Google for up to 14 months</li>
+      <li><strong>Crash reports:</strong> Retained by Crashlytics for 90 days</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Your Rights</h2>
+    <ul>
+      <li><strong>Access</strong> — all your data is visible within the app</li>
+      <li><strong>Edit</strong> — update name and financial data at any time</li>
+      <li><strong>Delete</strong> — delete individual records in-app; contact us for full account deletion</li>
+      <li><strong>Portability</strong> — contact us to request a data export</li>
+      <li><strong>Opt out of Analytics</strong> — adjust your device's advertising settings or contact us</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>7. Children's Privacy</h2>
+    <p>DhanTrack is not directed at children under 13. We do not knowingly collect personal information from children under 13. If you believe a child has provided us information, please contact us immediately.</p>
+  </div>
+
+  <div class="card">
+    <h2>8. Changes to This Policy</h2>
+    <p>We may update this policy from time to time. When we do, we will update the "Last Updated" date above and notify users through the app. Continued use constitutes acceptance of the updated policy.</p>
+  </div>
+
+  <div class="card">
+    <h2>9. Contact Us</h2>
+    <ul>
+      <li><strong>App:</strong> DhanTrack – Budget &amp; Money Manager</li>
+      <li><strong>Developer:</strong> Bhavesh Patil</li>
+      <li><strong>Email:</strong> <a href="mailto:bhaveshppatil64@gmail.com">bhaveshppatil64@gmail.com</a></li>
+    </ul>
+  </div>
+
+  <div class="footer">© 2026 DhanTrack. All rights reserved.</div>
+</div>
+
+</body>
+</html>
