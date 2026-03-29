@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Delete Account &amp; Data – DhanTrack</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f7fa; color: #1a1a2e; line-height: 1.75; }
+    .header { background: linear-gradient(135deg, #0A1E3D 0%, #0D47A1 55%, #0097A7 100%); padding: 36px 24px 28px; }
+    .header h1 { color: #fff; font-size: 22px; font-weight: 700; letter-spacing: 0.3px; }
+    .header .app { color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 4px; }
+    .header .meta { color: rgba(255,255,255,0.6); font-size: 12px; margin-top: 8px; }
+    .container { max-width: 760px; margin: 0 auto; padding: 24px 20px 48px; }
+    .card { background: #fff; border-radius: 12px; padding: 20px 22px; margin-bottom: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.07); }
+    .highlight { background: #E3F2FD; border-left: 4px solid #0D47A1; padding: 14px 18px; border-radius: 8px; margin-bottom: 20px; font-size: 14px; color: #0A1E3D; }
+    .warn { background: #FFF3E0; border-left: 4px solid #E65100; padding: 14px 18px; border-radius: 8px; margin-bottom: 20px; font-size: 14px; color: #3e2000; }
+    h2 { font-size: 16px; font-weight: 700; color: #0D47A1; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    p { font-size: 14px; color: #444; margin-bottom: 10px; }
+    ol, ul { padding-left: 20px; margin-bottom: 10px; }
+    li { font-size: 14px; color: #444; margin-bottom: 6px; }
+    a { color: #0D47A1; }
+    .step { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; }
+    .step-num { background: #0D47A1; color: #fff; font-size: 12px; font-weight: 700; min-width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: 2px; }
+    .step-text { font-size: 14px; color: #444; }
+    .btn { display: inline-block; background: #C62828; color: #fff; text-decoration: none; padding: 13px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; margin-top: 6px; }
+    .btn:hover { background: #b71c1c; }
+    .btn-outline { display: inline-block; background: transparent; color: #0D47A1; text-decoration: none; padding: 11px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; border: 2px solid #0D47A1; margin-top: 6px; }
+    .btn-outline:hover { background: #E3F2FD; }
+    .divider { border: none; border-top: 1px solid #eee; margin: 20px 0; }
+    .footer { text-align: center; font-size: 12px; color: #999; padding: 20px 0 8px; }
+    .tag { display: inline-block; background: #FFEBEE; color: #C62828; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 20px; }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🗑️ Delete Account &amp; Data</h1>
+  <div class="app">DhanTrack – Budget &amp; Money Manager</div>
+  <div class="meta">Last Updated: March 29, 2026</div>
+</div>
+
+<div class="container">
+
+  <div class="highlight">
+    You have full control over your data. You can delete your account and all associated data directly inside the DhanTrack app, or by submitting a request below.
+  </div>
+
+  <!-- Option 1: In-app -->
+  <div class="card">
+    <h2>⚡ Option 1 — Delete Directly in the App <span class="tag">Instant</span></h2>
+    <p>The fastest way to delete your account and all data is from within the app:</p>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-text">Open <strong>DhanTrack</strong> and sign in to your account.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-text">Tap the <strong>Profile</strong> tab (bottom navigation).</div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-text">Scroll to the bottom and tap <strong>"Delete Account"</strong>.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-text">Confirm the deletion in the dialog. Your account and all data will be permanently erased immediately.</div>
+    </div>
+
+    <hr class="divider" />
+    <p><strong>What gets deleted instantly:</strong></p>
+    <ul>
+      <li>All transactions, budgets, and balance records</li>
+      <li>Your account profile and session data</li>
+      <li>All cloud-synced data on Firebase Realtime Database</li>
+      <li>Your Firebase Authentication account</li>
+    </ul>
+  </div>
+
+  <!-- Option 2: Email request -->
+  <div class="card">
+    <h2>📧 Option 2 — Submit a Deletion Request</h2>
+    <p>If you no longer have access to the app or prefer to request deletion via email, tap the button below. It will open your email client with a pre-filled message — just send it.</p>
+
+    <div class="warn">
+      ⚠️ Please send the request from the email address associated with your DhanTrack account so we can verify ownership.
+    </div>
+
+    <a class="btn"
+       href="mailto:bhaveshppatil64@gmail.com?subject=DhanTrack%20%E2%80%93%20Account%20%26%20Data%20Deletion%20Request&body=Hi%2C%0A%0AI%20would%20like%20to%20request%20the%20permanent%20deletion%20of%20my%20DhanTrack%20account%20and%20all%20associated%20data.%0A%0AEmail%20used%20to%20sign%20up%3A%20%5Byour%20email%20here%5D%0A%0APlease%20confirm%20once%20the%20deletion%20is%20complete.%0A%0AThank%20you.">
+      📨 Send Deletion Request Email
+    </a>
+
+    <hr class="divider" />
+    <p style="font-size:13px; color:#777;">We will process your request and confirm deletion within <strong>7 business days</strong>. All data listed above will be permanently removed.</p>
+  </div>
+
+  <!-- What data is deleted -->
+  <div class="card">
+    <h2>🔍 What Data Is Deleted</h2>
+    <ul>
+      <li><strong>Transactions</strong> — all income and expense records</li>
+      <li><strong>Budgets</strong> — monthly budget configurations</li>
+      <li><strong>Account balance</strong> — starting balance and adjustments</li>
+      <li><strong>Profile info</strong> — display name, email, currency preference</li>
+      <li><strong>Cloud data</strong> — entire Firebase Realtime Database entry (<code>users/{uid}</code>)</li>
+      <li><strong>Auth account</strong> — Firebase Authentication user record</li>
+    </ul>
+    <p style="margin-top:10px;">Anonymized, non-identifiable analytics events (Firebase Analytics) may be retained as they cannot be linked back to you after account deletion.</p>
+  </div>
+
+  <div class="footer">
+    <p>Questions? Contact us at <a href="mailto:bhaveshppatil64@gmail.com">bhaveshppatil64@gmail.com</a></p>
+    <p style="margin-top:6px;"><a href="index.html">← Back to Legal</a> &nbsp;·&nbsp; <a href="privacy_policy.html">Privacy Policy</a></p>
+  </div>
+
+</div>
+</body>
+</html>
