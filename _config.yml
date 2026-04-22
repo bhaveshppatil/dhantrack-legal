@@ -1,4 +1,6 @@
 theme: null
 title: DhanTrack
 description: Smart personal finance tracking app built with Jetpack Compose
+url: "https://bhaveshpatil.github.io"
+baseurl: "/dhantrack-legal"
 
