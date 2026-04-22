@@ -29,7 +29,7 @@
 <div class="header">
   <h1>📋 Terms &amp; Conditions</h1>
   <div class="app">DhanTrack – Budget &amp; Money Manager</div>
-  <div class="meta">Effective: March 8, 2026 &nbsp;·&nbsp; Last Updated: March 28, 2026</div>
+  <div class="meta">Effective: March 8, 2026 &nbsp;·&nbsp; Last Updated: April 5, 2026</div>
 </div>
 
 <div class="container">
@@ -48,6 +48,8 @@
       <li>View financial summaries, reports, and visual charts</li>
       <li>Sync and back up your financial data securely via cloud</li>
       <li>View a balance and transaction summary on your home screen via the app widget</li>
+      <li>Auto-import bank debit transactions from SMS messages (optional, requires SMS permission)</li>
+      <li>Receive push notifications for budget alerts, spending summaries, and reminders (optional, requires notification permission)</li>
     </ul>
     <div class="warning">
       <strong>DhanTrack is a personal tracking tool only.</strong> It does not provide financial advice, investment guidance, tax advice, or banking services.
@@ -78,13 +80,43 @@
   </div>
 
   <div class="card">
-    <h2>4. Financial Data Disclaimer</h2>
+    <h2>4. SMS Auto-Import</h2>
+    <h3>4.1 Opt-in Only</h3>
+    <p>The SMS Auto-Import feature is <strong>entirely optional</strong>. It is activated only when you explicitly grant the <strong>READ_SMS</strong> and <strong>RECEIVE_SMS</strong> permissions when prompted on the Dashboard. You may dismiss the prompt or revoke the permission at any time without affecting any other app functionality.</p>
+    <h3>4.2 What It Does</h3>
+    <p>When you enable SMS Auto-Import, DhanTrack will:</p>
+    <ul>
+      <li>Perform a one-time historical scan of your SMS inbox for the last <strong>90 days</strong>, reading only messages from recognised Indian bank senders</li>
+      <li>Automatically create expense transactions from parsed bank debit SMS</li>
+      <li>Continue listening for and processing incoming bank SMS in real time</li>
+      <li>Refresh the last 3 days of bank SMS when you pull-to-refresh on the Dashboard</li>
+    </ul>
+    <h3>4.3 On-Device Processing</h3>
+    <p>All SMS content is processed <strong>entirely on your device</strong>. Raw SMS message bodies are never transmitted to our servers or any third party. Only the extracted transaction data (amount, merchant, category, date) is stored locally and synced to Firebase — identical to a manually-entered transaction.</p>
+    <h3>4.4 Accuracy</h3>
+    <p>SMS parsing is performed using pattern matching and may not be 100% accurate. Merchant names, categories, and amounts extracted from SMS are best-effort approximations. You are responsible for reviewing and correcting any auto-imported transactions. DhanTrack is not liable for inaccuracies in SMS-imported data.</p>
+    <h3>4.5 Revoking Access</h3>
+    <p>You can revoke SMS permission at any time via <strong>Android Settings → Apps → DhanTrack → Permissions → SMS</strong>. DhanTrack will immediately stop reading or receiving SMS. Previously imported transactions will remain in the app.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Push Notifications</h2>
+    <h3>5.1 Opt-in Only</h3>
+    <p>Push notifications require explicit permission on Android 13 and later. You can grant or deny this permission at any time via <strong>Android Settings → Apps → DhanTrack → Notifications</strong>.</p>
+    <h3>5.2 Notification Types</h3>
+    <p>When notifications are enabled, DhanTrack may send alerts for: budget thresholds reached or exceeded, auto-imported SMS transactions, daily expense reminders, weekly and monthly spending summaries, new month budget prompts, savings streak milestones, and unusual large transaction warnings.</p>
+    <h3>5.3 Firebase Cloud Messaging</h3>
+    <p>Notifications are delivered via Firebase Cloud Messaging (FCM). By enabling notifications, you consent to FCM processing the necessary device token to route notifications to your device. FCM is subject to <a href="https://firebase.google.com/terms">Firebase Terms of Service</a>.</p>
+  </div>
+
+  <div class="card">
+    <h2>6. Financial Data Disclaimer</h2>
     <div class="warning">
       <strong>Important:</strong> DhanTrack is a personal tracking tool, not a financial advisory service.
     </div>
     <ul>
       <li>DhanTrack does <strong>not</strong> connect to your bank accounts or financial institutions</li>
-      <li>All financial data is <strong>manually entered by you</strong> and is only as accurate as what you input</li>
+      <li>Manually entered data is only as accurate as what you input; SMS-imported data is subject to parsing accuracy</li>
       <li>DhanTrack does <strong>not</strong> provide financial advice, investment recommendations, or tax guidance</li>
       <li>You should not rely on DhanTrack to make significant financial decisions without a qualified advisor</li>
       <li>We are <strong>not responsible</strong> for any financial decisions made based on data in the app</li>
@@ -92,13 +124,13 @@
   </div>
 
   <div class="card">
-    <h2>5. Data Ownership</h2>
-    <p>All financial data you enter belongs to <strong>you</strong>. By using the app, you grant us a limited, non-exclusive license to store and process your data solely to provide the app's services.</p>
+    <h2>7. Data Ownership</h2>
+    <p>All financial data you enter or that is imported via SMS belongs to <strong>you</strong>. By using the app, you grant us a limited, non-exclusive license to store and process your data solely to provide the app's services.</p>
     <p>We do not claim ownership of your financial data and do not use it for any commercial purpose.</p>
   </div>
 
   <div class="card">
-    <h2>6. Cloud Sync &amp; Backup</h2>
+    <h2>8. Cloud Sync &amp; Backup</h2>
     <p>By using DhanTrack, you consent to your data being stored on Google's Firebase infrastructure. You understand that:</p>
     <ul>
       <li>Automatic background sync occurs approximately every 24 hours when a network connection is available</li>
@@ -109,32 +141,32 @@
   </div>
 
   <div class="card">
-    <h2>7. Intellectual Property</h2>
+    <h2>9. Intellectual Property</h2>
     <p>The app and all its original content, features, design, code, and functionality are the exclusive property of the developer and are protected by applicable laws. You may not copy, modify, distribute, sell, or lease any part of the app without our written permission.</p>
   </div>
 
   <div class="card">
-    <h2>8. Disclaimer of Warranties</h2>
-    <p>The app is provided on an <strong>"AS IS" and "AS AVAILABLE"</strong> basis without warranties of any kind, including warranties of merchantability, fitness for a particular purpose, or uninterrupted error-free operation.</p>
+    <h2>10. Disclaimer of Warranties</h2>
+    <p>The app is provided on an <strong>"AS IS" and "AS AVAILABLE"</strong> basis without warranties of any kind, including warranties of merchantability, fitness for a particular purpose, or uninterrupted error-free operation. SMS parsing accuracy and notification delivery are not guaranteed.</p>
   </div>
 
   <div class="card">
-    <h2>9. Limitation of Liability</h2>
-    <p>To the fullest extent permitted by law, the developer shall not be liable for any indirect, incidental, consequential, or punitive damages, including loss of data, financial losses, or service interruptions. Our total liability shall not exceed the amount you paid for the app (₹0 if free).</p>
+    <h2>11. Limitation of Liability</h2>
+    <p>To the fullest extent permitted by law, the developer shall not be liable for any indirect, incidental, consequential, or punitive damages, including loss of data, financial losses, inaccurate SMS-imported transactions, missed notifications, or service interruptions. Our total liability shall not exceed the amount you paid for the app (₹0 if free).</p>
   </div>
 
   <div class="card">
-    <h2>10. Termination</h2>
+    <h2>12. Termination</h2>
     <h3>By You</h3>
-    <p>You may stop using the app at any time and request full account and data deletion by contacting us.</p>
+    <p>You may stop using the app at any time. You can delete your account and all associated data directly from <strong>Profile → Delete Account</strong> within the app. This action is immediate and permanent — your Firebase Auth record, cloud data, and all stored transactions, budgets, and balances will be erased. Local data is removed when you uninstall the app.</p>
     <h3>By Us</h3>
     <p>We reserve the right to suspend or terminate your account if you violate these Terms or if required by law.</p>
     <h3>Effect of Termination</h3>
-    <p>Cloud data will be deleted within 30 days of account termination. Local data is removed when you uninstall the app.</p>
+    <p>Upon account deletion: your Firebase Auth record is removed immediately, cloud data is deleted immediately, and local data is removed on app uninstall. Analytics and crash data retained by Google may persist for their standard retention periods (up to 14 months and 90 days respectively).</p>
   </div>
 
   <div class="card">
-    <h2>11. Third-Party Services</h2>
+    <h2>13. Third-Party Services</h2>
     <p>DhanTrack integrates with Firebase and Google services. Your use of these services is also governed by:</p>
     <ul>
       <li><a href="https://firebase.google.com/terms">Firebase Terms of Service</a></li>
@@ -144,17 +176,17 @@
   </div>
 
   <div class="card">
-    <h2>12. Changes to These Terms</h2>
+    <h2>14. Changes to These Terms</h2>
     <p>We may update these Terms at any time. We will update the "Last Updated" date and notify users in-app. Continued use of the app after changes constitutes your acceptance.</p>
   </div>
 
   <div class="card">
-    <h2>13. Governing Law</h2>
+    <h2>15. Governing Law</h2>
     <p>These Terms are governed by the laws of <strong>India</strong>. Any disputes shall be subject to the exclusive jurisdiction of the courts located in India.</p>
   </div>
 
   <div class="card">
-    <h2>14. Contact Us</h2>
+    <h2>16. Contact Us</h2>
     <ul>
       <li><strong>App:</strong> DhanTrack – Budget &amp; Money Manager</li>
       <li><strong>Developer:</strong> Bhavesh Patil</li>

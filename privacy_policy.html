@@ -14,6 +14,7 @@
     .container { max-width: 760px; margin: 0 auto; padding: 24px 20px 48px; }
     .card { background: #fff; border-radius: 12px; padding: 20px 22px; margin-bottom: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.07); }
     .highlight { background: #E3F2FD; border-left: 4px solid #0D47A1; padding: 14px 18px; border-radius: 8px; margin-bottom: 20px; font-size: 14px; color: #0A1E3D; }
+    .warning { background: #FFF8E1; border-left: 4px solid #F9A825; padding: 14px 18px; border-radius: 8px; margin: 12px 0; font-size: 14px; color: #5D4037; }
     h2 { font-size: 16px; font-weight: 700; color: #0D47A1; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
     h3 { font-size: 14px; font-weight: 600; color: #1a1a2e; margin: 14px 0 8px; }
     p { font-size: 14px; color: #444; margin-bottom: 10px; }
@@ -29,7 +30,7 @@
 <div class="header">
   <h1>🔒 Privacy Policy</h1>
   <div class="app">DhanTrack – Budget &amp; Money Manager</div>
-  <div class="meta">Effective: March 8, 2026 &nbsp;·&nbsp; Last Updated: March 28, 2026</div>
+  <div class="meta">Effective: March 8, 2026 &nbsp;·&nbsp; Last Updated: April 5, 2026</div>
 </div>
 
 <div class="container">
@@ -47,16 +48,36 @@
       <li><strong>Phone Number</strong> — only when you use Phone/OTP sign-in; used solely for verification and not stored beyond Firebase Authentication</li>
       <li><strong>Firebase UID</strong> — a unique identifier to associate your data in the cloud</li>
     </ul>
-    <h3>Financial Data (entered by you)</h3>
+    <h3>Financial Data (entered by you or imported from SMS)</h3>
     <ul>
       <li><strong>Transactions</strong> — description, category, amount, and date</li>
       <li><strong>Budgets</strong> — category name, spending limit, and amount spent</li>
       <li><strong>Account Balances</strong> — bank name, account type (Savings/Demat), and monthly balance snapshot</li>
     </ul>
     <p>We do <strong>not</strong> collect bank account numbers, card numbers, PINs, tax IDs, income details, or any sensitive financial credentials.</p>
+    <h3>SMS Data (optional — only with your permission)</h3>
+    <div class="warning">
+      <strong>SMS access is entirely optional.</strong> This feature is only activated if you explicitly grant the SMS permission when prompted. You can dismiss the prompt and use DhanTrack without ever enabling it.
+    </div>
+    <p>If you grant the <strong>READ_SMS</strong> and <strong>RECEIVE_SMS</strong> permissions, DhanTrack will:</p>
+    <ul>
+      <li>Scan your SMS inbox for messages received in the last <strong>90 days</strong> from recognised Indian bank senders (e.g., HDFCBK, SBIINB, ICICIB)</li>
+      <li>Parse those messages to extract the <strong>transaction amount</strong>, <strong>merchant name</strong>, and <strong>date</strong> — and automatically create expense entries</li>
+      <li>Listen for <strong>incoming bank SMS</strong> in real time and auto-log new debit transactions as they arrive</li>
+      <li>Perform a lightweight refresh of the <strong>last 3 days</strong> of bank SMS whenever you pull-to-refresh on the dashboard</li>
+    </ul>
+    <p><strong>What we do NOT do with SMS:</strong></p>
+    <ul>
+      <li>We do <strong>not</strong> read, store, or transmit personal SMS, OTPs, non-bank messages, or any message content beyond what is needed to extract a transaction amount and merchant</li>
+      <li>Raw SMS message bodies are processed entirely <strong>on-device</strong> and are never sent to our servers or any third party</li>
+      <li>Only the parsed transaction fields (amount, merchant, category, date) are saved locally and synced to Firebase — identical to a manually-entered transaction</li>
+      <li>Non-bank SMS are filtered out immediately and never accessed</li>
+    </ul>
+    <p>A deduplication key is stored in a local SharedPreferences file to prevent the same SMS from creating duplicate transactions.</p>
     <h3>Preferences</h3>
     <ul>
       <li><strong>Currency</strong> — your selected display currency (default: INR)</li>
+      <li><strong>SMS import preference</strong> — whether you have granted or dismissed the SMS permission prompt</li>
     </ul>
     <h3>Usage &amp; Diagnostic Data</h3>
     <ul>
@@ -68,43 +89,62 @@
   </div>
 
   <div class="card">
-    <h2>2. How We Use Your Information</h2>
+    <h2>2. App Permissions</h2>
+    <p>The following permissions may be requested by DhanTrack:</p>
+    <ul>
+      <li><strong>READ_SMS</strong> — <em>Optional.</em> Reads bank transaction SMS from your inbox to auto-import expense entries. Only SMS from recognised Indian bank senders are processed. You can decline this and use DhanTrack fully without it.</li>
+      <li><strong>RECEIVE_SMS</strong> — <em>Optional.</em> Receives incoming bank SMS in real time to automatically log new debit transactions as they arrive.</li>
+      <li><strong>POST_NOTIFICATIONS</strong> — <em>Optional (Android 13+).</em> Allows DhanTrack to send you budget alerts, transaction confirmations, spending summaries, and reminders. You can decline or revoke this at any time in system settings.</li>
+      <li><strong>INTERNET</strong> — Required for Firebase cloud sync, authentication, and analytics.</li>
+      <li><strong>RECEIVE_BOOT_COMPLETED</strong> — Allows the background sync worker to reschedule after a device restart.</li>
+    </ul>
+    <p>You can revoke any optional permission at any time via <strong>Android Settings → Apps → DhanTrack → Permissions</strong>. Revoking a permission disables its feature but does not affect other app functionality.</p>
+  </div>
+
+  <div class="card">
+    <h2>3. How We Use Your Information</h2>
     <ul>
       <li>To create and manage your account</li>
       <li>To store, display, and back up your financial data</li>
+      <li>To auto-import bank transactions from SMS (only with your permission)</li>
       <li>To sync your data across devices via Firebase Realtime Database</li>
       <li>To restore your data when you log in on a new device</li>
       <li>To run a 24-hour background sync to keep your cloud backup current</li>
+      <li>To send you budget alerts, transaction notifications, spending summaries, and reminders via push notification (only with your permission)</li>
       <li>To diagnose crashes and improve app stability</li>
       <li>To understand feature usage and improve the app experience</li>
     </ul>
   </div>
 
   <div class="card">
-    <h2>3. Data Storage &amp; Security</h2>
+    <h2>4. Data Storage &amp; Security</h2>
     <h3>On Your Device</h3>
     <p>Your data is stored in a local SQLite database (Room) and encrypted DataStore. Both are excluded from Android device backups for your security. Only DhanTrack can access this data.</p>
     <h3>Home Screen Widget</h3>
     <p>If you add the DhanTrack widget to your home screen, it reads your locally stored balance and transaction summary. No additional data is collected or transmitted by the widget.</p>
     <h3>In the Cloud</h3>
     <p>Your data is synced to Firebase Realtime Database under a path scoped exclusively to your UID (<code>users/{your-uid}/</code>). Only you — when authenticated — can read or write your data.</p>
+    <h3>SMS Processing</h3>
+    <p>All SMS parsing and processing happens <strong>entirely on your device</strong>. Raw SMS content is never sent to Firebase, our servers, or any third party. Only the structured transaction output (amount, merchant name, category, date) is stored — the same as a manually entered transaction.</p>
     <h3>Security Measures</h3>
     <ul>
       <li>All Firebase communication uses <strong>TLS/HTTPS encryption</strong></li>
       <li>Authentication via <strong>Firebase Authentication</strong> (OAuth 2.0)</li>
       <li>Cloud data access protected by <strong>Firebase Security Rules</strong></li>
       <li>Session data stored in <strong>encrypted DataStore</strong></li>
+      <li>SMS data processed entirely on-device — never transmitted</li>
     </ul>
   </div>
 
   <div class="card">
-    <h2>4. Third-Party Services</h2>
+    <h2>5. Third-Party Services</h2>
     <ul>
       <li><strong>Firebase Authentication</strong> — <a href="https://firebase.google.com/support/privacy">Firebase Privacy Policy</a></li>
       <li><strong>Firebase Realtime Database</strong> — <a href="https://firebase.google.com/support/privacy">Firebase Privacy Policy</a></li>
       <li><strong>Firebase Analytics</strong> — <a href="https://firebase.google.com/support/privacy">Firebase Privacy Policy</a></li>
       <li><strong>Firebase Crashlytics</strong> — <a href="https://firebase.google.com/support/privacy">Firebase Privacy Policy</a></li>
       <li><strong>Firebase Remote Config</strong> — used to remotely deliver app configuration, including privacy policy and terms content — <a href="https://firebase.google.com/support/privacy">Firebase Privacy Policy</a></li>
+      <li><strong>Firebase Cloud Messaging (FCM)</strong> — used to deliver push notifications (budget alerts, spending summaries, reminders) to your device — <a href="https://firebase.google.com/support/privacy">Firebase Privacy Policy</a></li>
       <li><strong>Google Sign-In</strong> — <a href="https://policies.google.com/privacy">Google Privacy Policy</a></li>
       <li><strong>Google Play Services</strong> — core Android services that may access the Advertising ID; we do not use it for advertising — <a href="https://policies.google.com/privacy">Google Privacy Policy</a></li>
     </ul>
@@ -112,38 +152,58 @@
   </div>
 
   <div class="card">
-    <h2>5. Data Retention</h2>
+    <h2>6. Push Notifications</h2>
+    <p>With your permission (Android 13+ requires explicit grant), DhanTrack may send you the following types of push notifications via Firebase Cloud Messaging:</p>
+    <ul>
+      <li><strong>Budget alerts</strong> — when you approach or exceed a spending limit</li>
+      <li><strong>Transaction confirmations</strong> — when a transaction is auto-imported from SMS</li>
+      <li><strong>Daily reminders</strong> — a gentle nudge to log today's expenses</li>
+      <li><strong>Weekly spending summaries</strong> — your week in numbers</li>
+      <li><strong>Month-end summaries</strong> — total spend and top category for the month</li>
+      <li><strong>New month reminders</strong> — prompt to review budgets at month start</li>
+      <li><strong>Savings streak alerts</strong> — celebrate days without overspending</li>
+      <li><strong>Unusual large transaction alerts</strong> — a heads-up for unexpectedly high SMS-imported amounts</li>
+    </ul>
+    <p>You can disable all notifications at any time via <strong>Android Settings → Apps → DhanTrack → Notifications</strong>. Disabling notifications does not affect any other app functionality.</p>
+  </div>
+
+  <div class="card">
+    <h2>7. Data Retention</h2>
     <ul>
       <li><strong>Active account:</strong> Data retained as long as your account exists</li>
-      <li><strong>Account deletion:</strong> Firebase Auth record removed immediately; Realtime Database data deleted within 30 days; local data removed on app uninstall</li>
+      <li><strong>Account deletion:</strong> You can delete your account directly from the Profile screen in the app. Your Firebase Auth record is removed immediately; Realtime Database data is deleted immediately upon confirmation; local data is removed when you uninstall the app.</li>
       <li><strong>Analytics:</strong> Retained by Google for up to 14 months</li>
       <li><strong>Crash reports:</strong> Retained by Crashlytics for 90 days</li>
+      <li><strong>SMS deduplication keys:</strong> Stored in local SharedPreferences and removed when you uninstall the app or clear app data</li>
     </ul>
   </div>
 
   <div class="card">
-    <h2>6. Your Rights</h2>
+    <h2>8. Your Rights</h2>
     <ul>
       <li><strong>Access</strong> — all your data is visible within the app</li>
       <li><strong>Edit</strong> — update name and financial data at any time</li>
-      <li><strong>Delete</strong> — delete individual records in-app; contact us for full account deletion</li>
+      <li><strong>Delete account</strong> — delete your account and all associated data directly from <strong>Profile → Delete Account</strong> within the app</li>
+      <li><strong>Delete individual records</strong> — swipe to delete any transaction, or remove budgets and balances in-app</li>
       <li><strong>Portability</strong> — contact us to request a data export</li>
+      <li><strong>Revoke SMS permission</strong> — go to Android Settings → Apps → DhanTrack → Permissions → SMS and disable it; the app will stop reading or receiving SMS immediately</li>
+      <li><strong>Opt out of notifications</strong> — disable via Android Settings → Apps → DhanTrack → Notifications</li>
       <li><strong>Opt out of Analytics</strong> — adjust your device's advertising settings or contact us</li>
     </ul>
   </div>
 
   <div class="card">
-    <h2>7. Children's Privacy</h2>
+    <h2>9. Children's Privacy</h2>
     <p>DhanTrack is not directed at children under 13. We do not knowingly collect personal information from children under 13. If you believe a child has provided us information, please contact us immediately.</p>
   </div>
 
   <div class="card">
-    <h2>8. Changes to This Policy</h2>
+    <h2>10. Changes to This Policy</h2>
     <p>We may update this policy from time to time. When we do, we will update the "Last Updated" date above and notify users through the app. Continued use constitutes acceptance of the updated policy.</p>
   </div>
 
   <div class="card">
-    <h2>9. Contact Us</h2>
+    <h2>11. Contact Us</h2>
     <ul>
       <li><strong>App:</strong> DhanTrack – Budget &amp; Money Manager</li>
       <li><strong>Developer:</strong> Bhavesh Patil</li>
