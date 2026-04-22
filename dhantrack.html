@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DhanTrack — Track Your Wealth</title>
+  <meta name="description" content="DhanTrack is a smart, offline-first personal finance app built with Jetpack Compose. Track expenses, set budgets, get AI insights, and watch your net worth grow." />
+  <meta property="og:title" content="DhanTrack — Track Your Wealth" />
+  <meta property="og:description" content="Smart expense tracking with AI insights, custom charts, and cloud sync. Built for Indians, works worldwide." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:   #00C896;
+      --green-d: #00A87E;
+      --yellow:  #FFB800;
+      --red:     #FF4757;
+      --bg:      #0A0E1A;
+      --bg2:     #111827;
+      --bg3:     #1C2537;
+      --border:  #1F2D45;
+      --text:    #E8EDF5;
+      --muted:   #8A9BBE;
+      --card-r:  16px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 5%;
+      background: rgba(10,14,26,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--green), #00E5B0);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 800; color: #fff;
+    }
+    .nav-logo span { font-weight: 700; font-size: 1.1rem; color: var(--text); }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: .9rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--green); }
+    .nav-cta {
+      background: var(--green); color: #000 !important; padding: 9px 20px;
+      border-radius: 8px; font-weight: 700 !important; font-size: .85rem !important;
+    }
+    .nav-cta:hover { background: var(--green-d) !important; color: #000 !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 120px 5% 80px;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(0,200,150,.15), transparent),
+        radial-gradient(ellipse 50% 40% at 80% 80%, rgba(0,200,150,.07), transparent),
+        var(--bg);
+      position: relative;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(0,200,150,.12); border: 1px solid rgba(0,200,150,.3);
+      color: var(--green); padding: 6px 16px; border-radius: 999px;
+      font-size: .8rem; font-weight: 600; margin-bottom: 28px; letter-spacing: .04em;
+    }
+    .hero h1 {
+      font-size: clamp(2.6rem, 7vw, 5rem); font-weight: 900; line-height: 1.1;
+      letter-spacing: -.03em; margin-bottom: 24px;
+    }
+    .hero h1 span { color: var(--green); }
+    .hero p {
+      max-width: 620px; color: var(--muted); font-size: clamp(1rem, 2vw, 1.2rem);
+      margin: 0 auto 40px;
+    }
+    .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--green); color: #000; padding: 14px 28px;
+      border-radius: 10px; font-weight: 700; font-size: 1rem;
+      text-decoration: none; transition: all .2s;
+    }
+    .btn-primary:hover { background: var(--green-d); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,200,150,.25); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: var(--text); padding: 14px 28px;
+      border-radius: 10px; font-weight: 600; font-size: 1rem;
+      text-decoration: none; border: 1px solid var(--border); transition: all .2s;
+    }
+    .btn-secondary:hover { border-color: var(--green); color: var(--green); transform: translateY(-2px); }
+
+    .hero-stats {
+      display: flex; gap: 48px; justify-content: center; margin-top: 64px; flex-wrap: wrap;
+    }
+    .stat { text-align: center; }
+    .stat-num { font-size: 2rem; font-weight: 800; color: var(--green); }
+    .stat-label { font-size: .8rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-top: 4px; }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 96px 5%; }
+    .section-label {
+      display: inline-block; color: var(--green); font-size: .75rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase; margin-bottom: 12px;
+    }
+    .section-title { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -.02em; margin-bottom: 16px; }
+    .section-sub { color: var(--muted); font-size: 1.05rem; max-width: 560px; }
+    .section-header { margin-bottom: 56px; }
+    .center { text-align: center; }
+    .center .section-sub { margin: 0 auto; }
+
+    /* ── FEATURES GRID ── */
+    #features { background: var(--bg2); }
+    .features-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px;
+    }
+    .feature-card {
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: var(--card-r); padding: 28px;
+      transition: border-color .25s, transform .25s;
+    }
+    .feature-card:hover { border-color: var(--green); transform: translateY(-4px); }
+    .feature-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: rgba(0,200,150,.12); display: flex; align-items: center;
+      justify-content: center; font-size: 22px; margin-bottom: 18px;
+    }
+    .feature-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+    .feature-card p { color: var(--muted); font-size: .9rem; line-height: 1.6; }
+    .feature-tag {
+      display: inline-block; margin-top: 14px;
+      background: rgba(0,200,150,.1); color: var(--green);
+      font-size: .72rem; font-weight: 600; padding: 3px 10px; border-radius: 999px;
+    }
+
+    /* ── BUDGET PROGRESS DEMO ── */
+    #budgets { background: var(--bg); }
+    .budget-demo { max-width: 560px; }
+    .budget-row { margin-bottom: 20px; }
+    .budget-meta { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: .9rem; }
+    .budget-meta span:first-child { font-weight: 600; }
+    .budget-meta span:last-child { color: var(--muted); }
+    .bar-track {
+      width: 100%; height: 10px; border-radius: 999px;
+      background: var(--border); overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%; border-radius: 999px;
+      animation: growBar 1.4s cubic-bezier(.4,0,.2,1) forwards;
+      transform-origin: left;
+    }
+    @keyframes growBar { from { width: 0 } }
+    .bar-green  { background: var(--green); }
+    .bar-yellow { background: var(--yellow); }
+    .bar-red    { background: var(--red); }
+
+    .budget-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .budget-info h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; margin-bottom: 16px; }
+    .budget-info p { color: var(--muted); margin-bottom: 24px; }
+    .budget-note {
+      display: flex; align-items: flex-start; gap: 12px;
+      background: rgba(255,184,0,.07); border: 1px solid rgba(255,184,0,.2);
+      border-radius: 10px; padding: 14px 16px; font-size: .88rem;
+    }
+    .budget-note .icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+
+    /* ── AI INSIGHTS ── */
+    #insights { background: var(--bg2); }
+    .insights-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+    .insight-card {
+      border-radius: var(--card-r); padding: 22px; border-left: 4px solid;
+    }
+    .insight-card.critical { background: rgba(255,71,87,.07); border-color: var(--red); }
+    .insight-card.warning  { background: rgba(255,184,0,.07); border-color: var(--yellow); }
+    .insight-card.tip      { background: rgba(0,200,150,.07); border-color: var(--green); }
+    .insight-card.positive { background: rgba(100,200,255,.07); border-color: #64C8FF; }
+    .insight-badge {
+      display: inline-block; font-size: .68rem; font-weight: 700;
+      letter-spacing: .08em; padding: 3px 10px; border-radius: 999px; margin-bottom: 10px;
+    }
+    .insight-card.critical .insight-badge { background: rgba(255,71,87,.2); color: var(--red); }
+    .insight-card.warning  .insight-badge { background: rgba(255,184,0,.2); color: var(--yellow); }
+    .insight-card.tip      .insight-badge { background: rgba(0,200,150,.2); color: var(--green); }
+    .insight-card.positive .insight-badge { background: rgba(100,200,255,.2); color: #64C8FF; }
+    .insight-card h4 { font-size: .95rem; font-weight: 700; margin-bottom: 6px; }
+    .insight-card p  { font-size: .85rem; color: var(--muted); line-height: 1.5; }
+
+    /* ── TECH STACK ── */
+    #techstack { background: var(--bg); }
+    .tech-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+    .tech-item {
+      display: flex; align-items: center; gap: 14px;
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 12px; padding: 16px 20px;
+      transition: border-color .2s;
+    }
+    .tech-item:hover { border-color: var(--green); }
+    .tech-emoji { font-size: 1.4rem; flex-shrink: 0; }
+    .tech-label { font-size: .85rem; color: var(--muted); }
+    .tech-value { font-size: .95rem; font-weight: 600; }
+
+    /* ── ARCHITECTURE ── */
+    #architecture { background: var(--bg2); }
+    .arch-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .module-list { display: flex; flex-direction: column; gap: 16px; }
+    .module-card {
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: var(--card-r); padding: 20px 24px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .module-tag {
+      font-family: 'JetBrains Mono', monospace; font-size: .8rem; font-weight: 600;
+      background: rgba(0,200,150,.1); color: var(--green); padding: 4px 12px;
+      border-radius: 6px; flex-shrink: 0; min-width: 130px; text-align: center;
+    }
+    .module-desc { font-size: .88rem; color: var(--muted); }
+    .mvi-box {
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: var(--card-r); padding: 28px;
+    }
+    .mvi-box h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; }
+    .mvi-flow { display: flex; flex-direction: column; gap: 12px; }
+    .mvi-step {
+      display: flex; align-items: center; gap: 14px;
+      background: var(--bg); border-radius: 10px; padding: 14px 16px;
+    }
+    .mvi-circle {
+      width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: .8rem;
+    }
+    .mvi-s { background: rgba(100,200,255,.15); color: #64C8FF; }
+    .mvi-e { background: rgba(255,184,0,.15); color: var(--yellow); }
+    .mvi-ef{ background: rgba(0,200,150,.15); color: var(--green); }
+    .mvi-step p { font-size: .88rem; color: var(--muted); }
+    .mvi-step strong { color: var(--text); }
+    .mvi-arrow { text-align: center; color: var(--muted); font-size: 1.2rem; }
+
+    /* ── CURRENCY ── */
+    #currencies { background: var(--bg); }
+    .currency-grid { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 40px; }
+    .currency-pill {
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 999px; padding: 10px 22px;
+      font-size: .95rem; font-weight: 600; display: flex; align-items: center; gap: 8px;
+      transition: all .2s;
+    }
+    .currency-pill:hover { border-color: var(--green); color: var(--green); }
+    .currency-symbol { color: var(--green); font-size: 1.1rem; }
+
+    /* ── ROADMAP ── */
+    #roadmap { background: var(--bg2); }
+    .roadmap-list { display: flex; flex-direction: column; gap: 0; max-width: 680px; margin: 0 auto; }
+    .roadmap-item { display: flex; gap: 24px; position: relative; }
+    .roadmap-left { display: flex; flex-direction: column; align-items: center; }
+    .roadmap-dot {
+      width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0;
+      background: var(--green); border: 3px solid var(--bg2); margin-top: 6px;
+      position: relative; z-index: 1;
+    }
+    .roadmap-dot.upcoming { background: var(--border); }
+    .roadmap-line { width: 2px; flex: 1; background: var(--border); margin: 4px 0; min-height: 32px; }
+    .roadmap-content { padding-bottom: 36px; }
+    .roadmap-status {
+      display: inline-block; font-size: .68rem; font-weight: 700; letter-spacing: .08em;
+      padding: 3px 10px; border-radius: 999px; margin-bottom: 8px;
+    }
+    .status-live { background: rgba(0,200,150,.15); color: var(--green); }
+    .status-coming { background: rgba(255,184,0,.15); color: var(--yellow); }
+    .roadmap-content h4 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+    .roadmap-content p { font-size: .88rem; color: var(--muted); }
+
+    /* ── PRIVACY ── */
+    #privacy { background: var(--bg); }
+    .privacy-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+    .privacy-card {
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: var(--card-r); padding: 24px; text-align: center;
+    }
+    .privacy-card .icon { font-size: 2rem; margin-bottom: 12px; }
+    .privacy-card h4 { font-size: .95rem; font-weight: 700; margin-bottom: 8px; }
+    .privacy-card p { font-size: .85rem; color: var(--muted); }
+
+    /* ── CTA ── */
+    #download {
+      background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(0,200,150,.12), transparent), var(--bg2);
+      text-align: center; padding: 120px 5%;
+    }
+    #download h2 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; margin-bottom: 20px; }
+    #download p { color: var(--muted); font-size: 1.1rem; margin-bottom: 40px; }
+    .store-badge {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: #fff; color: #000; padding: 12px 28px;
+      border-radius: 12px; text-decoration: none; font-weight: 700;
+      transition: all .2s; font-size: 1rem;
+    }
+    .store-badge:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,200,150,.2); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg); border-top: 1px solid var(--border);
+      padding: 40px 5%; display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: gap; gap: 20px;
+    }
+    footer p { color: var(--muted); font-size: .85rem; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: .85rem; transition: color .2s; }
+    .footer-links a:hover { color: var(--green); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .budget-layout, .arch-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 28px; }
+      footer { flex-direction: column; text-align: center; }
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* divider */
+    .divider { height: 1px; background: var(--border); margin: 0 5%; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <div class="nav-logo-icon">D</div>
+    <span>DhanTrack</span>
+  </a>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#insights">AI Insights</a>
+    <a href="#techstack">Tech Stack</a>
+    <a href="#architecture">Architecture</a>
+    <a href="#roadmap">Roadmap</a>
+    <a href="#download" class="nav-cta">Download</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-badge">🚀 v1.0.0 — Live on Play Store</div>
+  <h1>Track your <span>Dhan.</span><br/>Grow your wealth.</h1>
+  <p>
+    <em>Dhan (धन) means Wealth in Hindi.</em> DhanTrack is a smart, offline-first personal
+    finance app — log expenses in seconds, get AI-powered insights, and watch your net worth
+    grow. No bank credentials. No ads. Just you and your money.
+  </p>
+  <div class="hero-actions">
+    <a href="http://bit.ly/dhantrack" class="btn-primary">
+      ▶&nbsp; Get it on Play Store
+    </a>
+    <a href="#features" class="btn-secondary">
+      Explore Features ↓
+    </a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">8</div><div class="stat-label">Categories</div></div>
+    <div class="stat"><div class="stat-num">10</div><div class="stat-label">Currencies</div></div>
+    <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Offline First</div></div>
+    <div class="stat"><div class="stat-num">0</div><div class="stat-label">Ads</div></div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="section-header center reveal">
+    <span class="section-label">What it does</span>
+    <h2 class="section-title">Everything you need to own your finances</h2>
+    <p class="section-sub">Seven powerful modules, one beautifully designed app — built entirely in Kotlin and Jetpack Compose.</p>
+  </div>
+  <div class="features-grid">
+
+    <div class="feature-card reveal">
+      <div class="feature-icon">💰</div>
+      <h3>Expense Tracking</h3>
+      <p>Log expenses in seconds. Pick a category, enter an amount, done. Swipe to delete. Zero friction.</p>
+      <span class="feature-tag">8 categories</span>
+    </div>
+
+    <div class="feature-card reveal">
+      <div class="feature-icon">🎯</div>
+      <h3>Smart Budgeting</h3>
+      <p>Set monthly budgets per category. Animated progress bars shift Green → Yellow → Red as you approach limits.</p>
+      <span class="feature-tag">Intentional friction</span>
+    </div>
+
+    <div class="feature-card reveal">
+      <div class="feature-icon">🤖</div>
+      <h3>AI Budget Insights</h3>
+      <p>Personalised, actionable advice based on your real spending patterns — colour-coded by severity.</p>
+      <span class="feature-tag">Critical · Warning · Tip · Positive</span>
+    </div>
+
+    <div class="feature-card reveal">
+      <div class="feature-icon">📊</div>
+      <h3>Monthly Reports & Charts</h3>
+      <p>Fully custom bar chart built with Compose Canvas — zero third-party libraries. Drill into any month for breakdowns.</p>
+      <span class="feature-tag">Hand-drawn with Canvas</span>
+    </div>
+
+    <div class="feature-card reveal">
+      <div class="feature-icon">🏦</div>
+      <h3>Account Balance Tracking</h3>
+      <p>Log savings and demat account balances per bank, per month. Watch net worth move alongside your spending.</p>
+      <span class="feature-tag">Multi-bank support</span>
+    </div>
+
+    <div class="feature-card reveal">
+      <div class="feature-icon">🏠</div>
+      <h3>Home Screen Widget</h3>
+      <p>Built with Jetpack Glance. Total spent, budget left, and spending status — right on your home screen.</p>
+      <span class="feature-tag">Jetpack Glance API</span>
+    </div>
+
+    <div class="feature-card reveal">
+      <div class="feature-icon">🌍</div>
+      <h3>Multi-Currency Support</h3>
+      <p>10 currencies supported including INR, USD, EUR, GBP, JPY, AED, SGD, AUD, CAD, and CHF.</p>
+      <span class="feature-tag">10 currencies</span>
+    </div>
+
+    <div class="feature-card reveal">
+      <div class="feature-icon">☁️</div>
+      <h3>Offline-first + Cloud Sync</h3>
+      <p>Works 100% offline. Auto-syncs to Firebase every 24 hours via WorkManager. Switch phones without losing data.</p>
+      <span class="feature-tag">Firebase + WorkManager</span>
+    </div>
+
+    <div class="feature-card reveal">
+      <div class="feature-icon">🔐</div>
+      <h3>Privacy First</h3>
+      <p>No ads. No data selling. 3 auth methods (Email, Phone OTP, Google Sign-In). Full account + data deletion in-app.</p>
+      <span class="feature-tag">GDPR-friendly</span>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- BUDGETS -->
+<section id="budgets">
+  <div class="budget-layout">
+    <div class="budget-info reveal">
+      <span class="section-label">Smart Budgeting</span>
+      <h2>Visual budgets that keep you honest</h2>
+      <p>
+        Set monthly budgets per category and watch animated progress bars shift colours
+        in real time. The intentional rule of <strong>only 3 edits per month</strong> keeps
+        you committed — not constantly adjusting.
+      </p>
+      <div class="budget-note">
+        <div class="icon">💡</div>
+        <div>You can only edit a budget <strong>3 times per month</strong>. This intentional friction ensures you think before you set — and stick to what you set.</div>
+      </div>
+    </div>
+    <div class="budget-demo reveal">
+      <div class="budget-row">
+        <div class="budget-meta"><span>🛒 Groceries</span><span>₹3,200 / ₹5,000</span></div>
+        <div class="bar-track"><div class="bar-fill bar-green" style="width:64%"></div></div>
+      </div>
+      <div class="budget-row">
+        <div class="budget-meta"><span>🍔 Food &amp; Drink</span><span>₹2,950 / ₹3,500</span></div>
+        <div class="bar-track"><div class="bar-fill bar-yellow" style="width:84%"></div></div>
+      </div>
+      <div class="budget-row">
+        <div class="budget-meta"><span>🛍️ Shopping</span><span>₹6,200 / ₹5,000</span></div>
+        <div class="bar-track"><div class="bar-fill bar-red" style="width:100%"></div></div>
+      </div>
+      <div class="budget-row">
+        <div class="budget-meta"><span>🚗 Transportation</span><span>₹1,100 / ₹2,000</span></div>
+        <div class="bar-track"><div class="bar-fill bar-green" style="width:55%"></div></div>
+      </div>
+      <div class="budget-row">
+        <div class="budget-meta"><span>🎬 Entertainment</span><span>₹1,800 / ₹2,000</span></div>
+        <div class="bar-track"><div class="bar-fill bar-yellow" style="width:90%"></div></div>
+      </div>
+      <div class="budget-row">
+        <div class="budget-meta"><span>🏠 Housing</span><span>₹12,000 / ₹15,000</span></div>
+        <div class="bar-track"><div class="bar-fill bar-green" style="width:80%"></div></div>
+      </div>
+      <div class="budget-row">
+        <div class="budget-meta"><span>🏥 Health</span><span>₹400 / ₹1,500</span></div>
+        <div class="bar-track"><div class="bar-fill bar-green" style="width:27%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- AI INSIGHTS -->
+<section id="insights">
+  <div class="section-header center reveal">
+    <span class="section-label">AI Insights</span>
+    <h2 class="section-title">Not generic tips. Real insights.</h2>
+    <p class="section-sub">
+      The AI engine analyses your actual spending patterns and surfaces personalised, actionable
+      advice — colour-coded by severity so you know what to act on first.
+    </p>
+  </div>
+  <div class="insights-grid">
+    <div class="insight-card critical reveal">
+      <span class="insight-badge">🔴 CRITICAL</span>
+      <h4>Shopping budget exceeded by 24%</h4>
+      <p>You've spent ₹6,200 against a ₹5,000 limit. You've used all 3 budget edits this month — try to cut back on discretionary purchases for the remaining 9 days.</p>
+    </div>
+    <div class="insight-card warning reveal">
+      <span class="insight-badge">🟡 WARNING</span>
+      <h4>Food spending trending high</h4>
+      <p>At current pace you'll hit ₹4,100 this month — 17% over budget. You're at 84% with 12 days remaining. Consider cooking at home 2–3 more times this week.</p>
+    </div>
+    <div class="insight-card tip reveal">
+      <span class="insight-badge">🟢 TIP</span>
+      <h4>Great Transportation control</h4>
+      <p>You've only used 55% of your transport budget. If this trend continues, you could reallocate ₹900 toward your savings goal next month.</p>
+    </div>
+    <div class="insight-card positive reveal">
+      <span class="insight-badge">🔵 POSITIVE</span>
+      <h4>Net worth up ₹8,400 this month</h4>
+      <p>Your account balances show a month-over-month increase. Consistent below-budget months in Groceries and Health are paying off. Keep it up! 🎉</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TECH STACK -->
+<section id="techstack">
+  <div class="section-header reveal">
+    <span class="section-label">For the Engineers</span>
+    <h2 class="section-title">Built with modern Android tech</h2>
+    <p class="section-sub">Pure Kotlin, no hybrid frameworks. Every pixel is Compose. Every architecture decision is intentional.</p>
+  </div>
+  <div class="tech-grid">
+    <div class="tech-item reveal">
+      <span class="tech-emoji">🟣</span>
+      <div><div class="tech-value">Kotlin 2.3</div><div class="tech-label">Language — pure native</div></div>
+    </div>
+    <div class="tech-item reveal">
+      <span class="tech-emoji">🎨</span>
+      <div><div class="tech-value">Jetpack Compose + MD3</div><div class="tech-label">UI Framework</div></div>
+    </div>
+    <div class="tech-item reveal">
+      <span class="tech-emoji">🏗️</span>
+      <div><div class="tech-value">Clean Architecture + MVI</div><div class="tech-label">Architecture pattern</div></div>
+    </div>
+    <div class="tech-item reveal">
+      <span class="tech-emoji">💉</span>
+      <div><div class="tech-value">Dagger Hilt</div><div class="tech-label">Dependency Injection</div></div>
+    </div>
+    <div class="tech-item reveal">
+      <span class="tech-emoji">🗄️</span>
+      <div><div class="tech-value">Room + Kotlin Flow</div><div class="tech-label">Local Database</div></div>
+    </div>
+    <div class="tech-item reveal">
+      <span class="tech-emoji">🔥</span>
+      <div><div class="tech-value">Firebase Suite</div><div class="tech-label">Auth · Realtime DB · Crashlytics</div></div>
+    </div>
+    <div class="tech-item reveal">
+      <span class="tech-emoji">⚙️</span>
+      <div><div class="tech-value">WorkManager</div><div class="tech-label">Sync · Reminders · Summaries</div></div>
+    </div>
+    <div class="tech-item reveal">
+      <span class="tech-emoji">🧩</span>
+      <div><div class="tech-value">Jetpack Glance API</div><div class="tech-label">Home Screen Widget</div></div>
+    </div>
+    <div class="tech-item reveal">
+      <span class="tech-emoji">🧭</span>
+      <div><div class="tech-value">Navigation Compose</div><div class="tech-label">In-app navigation</div></div>
+    </div>
+    <div class="tech-item reveal">
+      <span class="tech-emoji">💾</span>
+      <div><div class="tech-value">DataStore + KotlinX Serialization</div><div class="tech-label">Preferences storage</div></div>
+    </div>
+    <div class="tech-item reveal">
+      <span class="tech-emoji">🤖</span>
+      <div><div class="tech-value">GitHub Actions CI/CD</div><div class="tech-label">Auto-sign → Play Store deploy</div></div>
+    </div>
+    <div class="tech-item reveal">
+      <span class="tech-emoji">📐</span>
+      <div><div class="tech-value">Compose Canvas</div><div class="tech-label">All charts — zero charting libs</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ARCHITECTURE -->
+<section id="architecture">
+  <div class="section-header reveal">
+    <span class="section-label">Architecture</span>
+    <h2 class="section-title">4-module clean architecture</h2>
+    <p class="section-sub">Concerns are razor-separated. Every screen follows a strict MVI contract — predictable, testable, and scales cleanly.</p>
+  </div>
+  <div class="arch-grid">
+    <div>
+      <div class="module-list">
+        <div class="module-card reveal">
+          <span class="module-tag">:app</span>
+          <span class="module-desc">Entry point. Navigation host, Hilt setup, Activity, and Application class.</span>
+        </div>
+        <div class="module-card reveal">
+          <span class="module-tag">:data</span>
+          <span class="module-desc">Room DB, Firebase repositories, DataStore prefs, WorkManager workers, and all data models.</span>
+        </div>
+        <div class="module-card reveal">
+          <span class="module-tag">:presentation</span>
+          <span class="module-desc">All screens, ViewModels, MVI State/Event/Effect contracts, and Compose UI trees.</span>
+        </div>
+        <div class="module-card reveal">
+          <span class="module-tag">:designsystem</span>
+          <span class="module-desc">Shared theme, typography, colours, reusable Compose components, and Canvas chart primitives.</span>
+        </div>
+      </div>
+    </div>
+    <div class="mvi-box reveal">
+      <h3>⚡ MVI Contract per Screen</h3>
+      <div class="mvi-flow">
+        <div class="mvi-step">
+          <div class="mvi-circle mvi-s">S</div>
+          <div><p><strong>State</strong> — Single source of truth for the entire screen. Immutable data class emitted as a Flow.</p></div>
+        </div>
+        <div class="mvi-arrow">↓</div>
+        <div class="mvi-step">
+          <div class="mvi-circle mvi-e">E</div>
+          <div><p><strong>Event</strong> — Sealed class of all possible user interactions the screen can receive from the UI.</p></div>
+        </div>
+        <div class="mvi-arrow">↓</div>
+        <div class="mvi-step">
+          <div class="mvi-circle mvi-ef">EF</div>
+          <div><p><strong>Effect</strong> — One-time side effects like navigation, showing a snackbar, or triggering a dialog.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CURRENCIES -->
+<section id="currencies">
+  <div class="section-header center reveal">
+    <span class="section-label">Multi-Currency</span>
+    <h2 class="section-title">10 currencies. One app.</h2>
+    <p class="section-sub">Track your finances wherever you are in the world. Switch currencies in Settings at any time.</p>
+  </div>
+  <div class="currency-grid">
+    <div class="currency-pill reveal"><span class="currency-symbol">₹</span> INR — Indian Rupee</div>
+    <div class="currency-pill reveal"><span class="currency-symbol">$</span> USD — US Dollar</div>
+    <div class="currency-pill reveal"><span class="currency-symbol">€</span> EUR — Euro</div>
+    <div class="currency-pill reveal"><span class="currency-symbol">£</span> GBP — British Pound</div>
+    <div class="currency-pill reveal"><span class="currency-symbol">¥</span> JPY — Japanese Yen</div>
+    <div class="currency-pill reveal"><span class="currency-symbol">د.إ</span> AED — UAE Dirham</div>
+    <div class="currency-pill reveal"><span class="currency-symbol">S$</span> SGD — Singapore Dollar</div>
+    <div class="currency-pill reveal"><span class="currency-symbol">A$</span> AUD — Australian Dollar</div>
+    <div class="currency-pill reveal"><span class="currency-symbol">C$</span> CAD — Canadian Dollar</div>
+    <div class="currency-pill reveal"><span class="currency-symbol">Fr</span> CHF — Swiss Franc</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ROADMAP -->
+<section id="roadmap">
+  <div class="section-header center reveal">
+    <span class="section-label">Roadmap</span>
+    <h2 class="section-title">What's live & what's coming</h2>
+    <p class="section-sub">v1.0.0 is the foundation. There's a lot more coming — here's what's on the horizon.</p>
+  </div>
+  <div class="roadmap-list">
+
+    <div class="roadmap-item reveal">
+      <div class="roadmap-left"><div class="roadmap-dot"></div><div class="roadmap-line"></div></div>
+      <div class="roadmap-content">
+        <span class="roadmap-status status-live">✅ LIVE — v1.0.0</span>
+        <h4>Core App — All 7 Modules</h4>
+        <p>Expense tracking, smart budgeting, AI insights, custom charts, account balances, home widget, multi-currency, offline sync.</p>
+      </div>
+    </div>
+
+    <div class="roadmap-item reveal">
+      <div class="roadmap-left"><div class="roadmap-dot upcoming"></div><div class="roadmap-line"></div></div>
+      <div class="roadmap-content">
+        <span class="roadmap-status status-coming">🔜 COMING SOON — Top Priority</span>
+        <h4>📩 SMS Auto-Import</h4>
+        <p>Every Indian bank sends a transaction SMS. Auto-parsing these means zero manual entry — making DhanTrack a true daily driver.</p>
+      </div>
+    </div>
+
+    <div class="roadmap-item reveal">
+      <div class="roadmap-left"><div class="roadmap-dot upcoming"></div><div class="roadmap-line"></div></div>
+      <div class="roadmap-content">
+        <span class="roadmap-status status-coming">🔜 COMING SOON</span>
+        <h4>🔔 Smart Push Notifications</h4>
+        <p>"You've spent 80% of your Food budget — 12 days still left this month." Proactive nudges, not noise. Powered by WorkManager + Firebase.</p>
+      </div>
+    </div>
+
+    <div class="roadmap-item reveal">
+      <div class="roadmap-left"><div class="roadmap-dot upcoming"></div><div class="roadmap-line"></div></div>
+      <div class="roadmap-content">
+        <span class="roadmap-status status-coming">🔜 PLANNED</span>
+        <h4>⌚ WearOS App</h4>
+        <p>Check your budget and log a quick expense right from your wrist. Full Compose for Wear OS integration.</p>
+      </div>
+    </div>
+
+    <div class="roadmap-item reveal">
+      <div class="roadmap-left"><div class="roadmap-dot upcoming"></div><div class="roadmap-line"></div></div>
+      <div class="roadmap-content">
+        <span class="roadmap-status status-coming">🔜 PLANNED</span>
+        <h4>🤝 Bill Splitting</h4>
+        <p>Split expenses with friends and track who owes what — right inside the app. No third-party app needed.</p>
+      </div>
+    </div>
+
+    <div class="roadmap-item reveal">
+      <div class="roadmap-left"><div class="roadmap-dot upcoming"></div></div>
+      <div class="roadmap-content">
+        <span class="roadmap-status status-coming">🔜 PLANNED</span>
+        <h4>📤 Export to CSV / PDF</h4>
+        <p>Your data, your way. Send it to your CA, your partner, or just keep a record. Full month-by-month export.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PRIVACY -->
+<section id="privacy">
+  <div class="section-header center reveal">
+    <span class="section-label">Privacy & Security</span>
+    <h2 class="section-title">Your data belongs to you</h2>
+    <p class="section-sub">DhanTrack was designed from day one with privacy as a non-negotiable.</p>
+  </div>
+  <div class="privacy-grid">
+    <div class="privacy-card reveal">
+      <div class="icon">🚫</div>
+      <h4>Zero Ads</h4>
+      <p>No advertising SDK. No third-party ad networks. No sponsored content. Ever.</p>
+    </div>
+    <div class="privacy-card reveal">
+      <div class="icon">🏦</div>
+      <h4>No Bank Credentials</h4>
+      <p>DhanTrack never asks for your bank login, account number, or any sensitive financial credential.</p>
+    </div>
+    <div class="privacy-card reveal">
+      <div class="icon">📵</div>
+      <h4>No Data Selling</h4>
+      <p>Your spending data is yours. It is never sold, shared, or monetised in any way.</p>
+    </div>
+    <div class="privacy-card reveal">
+      <div class="icon">🔑</div>
+      <h4>3 Auth Methods</h4>
+      <p>Sign in with Email/Password, Phone OTP, or Google Sign-In — whichever you're most comfortable with.</p>
+    </div>
+    <div class="privacy-card reveal">
+      <div class="icon">🗑️</div>
+      <h4>Full Data Deletion</h4>
+      <p>Delete your entire account and all associated data right from inside the app. No email required.</p>
+    </div>
+    <div class="privacy-card reveal">
+      <div class="icon">📶</div>
+      <h4>Offline First</h4>
+      <p>Everything works without internet. Cloud sync is optional and transparent — not a requirement.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD CTA -->
+<section id="download">
+  <div class="reveal">
+    <h2>Ready to take control<br/>of your <span style="color:var(--green)">Dhan?</span></h2>
+    <p>Free to download. No subscriptions. No ads. Just clarity.</p>
+    <a href="http://bit.ly/dhantrack" class="store-badge">
+      ▶&nbsp; Download on Google Play
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 DhanTrack · Built with ❤️ in Kotlin</p>
+  <div class="footer-links">
+    <a href="http://bit.ly/dhantrack">Play Store</a>
+    <a href="mailto:support@dhantrack.app">Contact</a>
+    <a href="#privacy">Privacy</a>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
+
