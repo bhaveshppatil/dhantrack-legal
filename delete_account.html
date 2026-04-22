@@ -4,51 +4,197 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Delete Account &amp; Data – DhanTrack</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f7fa; color: #1a1a2e; line-height: 1.75; }
-    .header { background: linear-gradient(135deg, #0A1E3D 0%, #0D47A1 55%, #0097A7 100%); padding: 36px 24px 28px; }
-    .header h1 { color: #fff; font-size: 22px; font-weight: 700; letter-spacing: 0.3px; }
-    .header .app { color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 4px; }
-    .header .meta { color: rgba(255,255,255,0.6); font-size: 12px; margin-top: 8px; }
-    .container { max-width: 760px; margin: 0 auto; padding: 24px 20px 48px; }
-    .card { background: #fff; border-radius: 12px; padding: 20px 22px; margin-bottom: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.07); }
-    .highlight { background: #E3F2FD; border-left: 4px solid #0D47A1; padding: 14px 18px; border-radius: 8px; margin-bottom: 20px; font-size: 14px; color: #0A1E3D; }
-    .warn { background: #FFF3E0; border-left: 4px solid #E65100; padding: 14px 18px; border-radius: 8px; margin-bottom: 20px; font-size: 14px; color: #3e2000; }
-    h2 { font-size: 16px; font-weight: 700; color: #0D47A1; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
-    p { font-size: 14px; color: #444; margin-bottom: 10px; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:   #00C896;
+      --green-d: #00A87E;
+      --yellow:  #FFB800;
+      --red:     #FF4757;
+      --bg:      #0A0E1A;
+      --bg2:     #111827;
+      --bg3:     #1C2537;
+      --border:  #1F2D45;
+      --text:    #E8EDF5;
+      --muted:   #8A9BBE;
+      --card-r:  16px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 5%;
+      background: rgba(10,14,26,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo-icon {
+      width: 34px; height: 34px; border-radius: 9px;
+      background: linear-gradient(135deg, var(--green), #00E5B0);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 800; color: #fff;
+    }
+    .nav-logo span { font-weight: 700; font-size: 1rem; color: var(--text); }
+    .nav-back {
+      color: var(--muted); text-decoration: none; font-size: .85rem; font-weight: 500;
+      display: flex; align-items: center; gap: 6px; transition: color .2s;
+    }
+    .nav-back:hover { color: var(--green); }
+
+    /* HEADER */
+    .page-header {
+      padding: 56px 5% 48px;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% -10%, rgba(255,71,87,.1), transparent),
+        var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+    .page-header-inner { max-width: 760px; margin: 0 auto; }
+    .header-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,71,87,.1); border: 1px solid rgba(255,71,87,.3);
+      color: var(--red); padding: 5px 14px; border-radius: 999px;
+      font-size: .75rem; font-weight: 600; margin-bottom: 20px; letter-spacing: .05em;
+    }
+    .page-header h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900;
+      letter-spacing: -.02em; margin-bottom: 10px;
+    }
+    .page-header .meta { color: var(--muted); font-size: .85rem; }
+
+    /* CONTAINER */
+    .container { max-width: 760px; margin: 0 auto; padding: 40px 5% 64px; }
+
+    /* HIGHLIGHT / WARNING boxes */
+    .highlight {
+      background: rgba(0,200,150,.08); border-left: 4px solid var(--green);
+      padding: 16px 20px; border-radius: 10px; margin-bottom: 28px;
+      font-size: .92rem; color: var(--text); line-height: 1.6;
+    }
+    .warn {
+      background: rgba(255,71,87,.07); border-left: 4px solid var(--red);
+      padding: 16px 20px; border-radius: 10px; margin: 14px 0;
+      font-size: .88rem; color: var(--text); line-height: 1.6;
+    }
+
+    /* CARDS */
+    .card {
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: var(--card-r); padding: 24px 28px; margin-bottom: 20px;
+      transition: border-color .25s;
+    }
+    .card:hover { border-color: rgba(0,200,150,.35); }
+
+    h2 {
+      font-size: 1rem; font-weight: 700; color: var(--green);
+      margin-bottom: 16px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    }
+    p { font-size: .88rem; color: var(--muted); margin-bottom: 10px; line-height: 1.7; }
     ol, ul { padding-left: 20px; margin-bottom: 10px; }
-    li { font-size: 14px; color: #444; margin-bottom: 6px; }
-    a { color: #0D47A1; }
-    .step { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; }
-    .step-num { background: #0D47A1; color: #fff; font-size: 12px; font-weight: 700; min-width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: 2px; }
-    .step-text { font-size: 14px; color: #444; }
-    .btn { display: inline-block; background: #C62828; color: #fff; text-decoration: none; padding: 13px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; margin-top: 6px; }
-    .btn:hover { background: #b71c1c; }
-    .btn-outline { display: inline-block; background: transparent; color: #0D47A1; text-decoration: none; padding: 11px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; border: 2px solid #0D47A1; margin-top: 6px; }
-    .btn-outline:hover { background: #E3F2FD; }
-    .divider { border: none; border-top: 1px solid #eee; margin: 20px 0; }
-    .footer { text-align: center; font-size: 12px; color: #999; padding: 20px 0 8px; }
-    .tag { display: inline-block; background: #FFEBEE; color: #C62828; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 20px; }
+    li { font-size: .88rem; color: var(--muted); margin-bottom: 7px; line-height: 1.6; }
+    li strong, p strong { color: var(--text); }
+    a { color: var(--green); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code {
+      font-family: monospace; font-size: .82rem;
+      background: rgba(0,200,150,.1); color: var(--green);
+      padding: 2px 7px; border-radius: 5px;
+    }
+
+    /* STEPS */
+    .step {
+      display: flex; align-items: flex-start; gap: 14px; margin-bottom: 14px;
+    }
+    .step-num {
+      background: rgba(0,200,150,.15); color: var(--green);
+      font-size: .75rem; font-weight: 800; min-width: 28px; height: 28px;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px; border: 1px solid rgba(0,200,150,.3);
+    }
+    .step-text { font-size: .88rem; color: var(--muted); padding-top: 4px; }
+    .step-text strong { color: var(--text); }
+
+    /* TAG */
+    .tag {
+      display: inline-block; background: rgba(0,200,150,.12); color: var(--green);
+      font-size: .7rem; font-weight: 700; padding: 3px 10px;
+      border-radius: 999px; letter-spacing: .04em;
+    }
+
+    /* DIVIDER */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--red); color: #fff; text-decoration: none;
+      padding: 13px 24px; border-radius: 10px; font-size: .9rem; font-weight: 700;
+      margin-top: 8px; transition: all .2s;
+    }
+    .btn:hover { background: #e03040; transform: translateY(-2px); box-shadow: 0 10px 28px rgba(255,71,87,.25); text-decoration: none; }
+
+    /* FOOTER */
+    footer {
+      background: var(--bg); border-top: 1px solid var(--border);
+      padding: 32px 5%; display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 16px;
+    }
+    footer p { color: var(--muted); font-size: .82rem; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: .82rem; transition: color .2s; }
+    .footer-links a:hover { color: var(--green); }
+
+    @media (max-width: 600px) {
+      .page-header { padding: 40px 5% 32px; }
+      .card { padding: 20px; }
+      footer { flex-direction: column; text-align: center; }
+    }
   </style>
 </head>
 <body>
 
-<div class="header">
-  <h1>🗑️ Delete Account &amp; Data</h1>
-  <div class="app">DhanTrack – Budget &amp; Money Manager</div>
-  <div class="meta">Last Updated: March 29, 2026</div>
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="dhantrack.html">
+    <div class="nav-logo-icon">D</div>
+    <span>DhanTrack</span>
+  </a>
+  <a class="nav-back" href="dhantrack.html">← Back to Home</a>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="header-badge">🗑️ Account Deletion</div>
+    <h1>Delete Account &amp; Data</h1>
+    <p class="meta">DhanTrack – Budget &amp; Money Manager &nbsp;·&nbsp; Last Updated: March 29, 2026</p>
+  </div>
 </div>
 
 <div class="container">
 
   <div class="highlight">
-    You have full control over your data. You can delete your account and all associated data directly inside the DhanTrack app, or by submitting a request below.
+    You have full control over your data. You can delete your account and all associated data directly inside the DhanTrack app — instantly and permanently — or submit a request via email.
   </div>
 
   <!-- Option 1: In-app -->
   <div class="card">
-    <h2>⚡ Option 1 — Delete Directly in the App <span class="tag">Instant</span></h2>
+    <h2>⚡ Option 1 — Delete Directly in the App <span class="tag">INSTANT</span></h2>
     <p>The fastest way to delete your account and all data is from within the app:</p>
 
     <div class="step">
@@ -93,7 +239,7 @@
     </a>
 
     <hr class="divider" />
-    <p style="font-size:13px; color:#777;">We will process your request and confirm deletion within <strong>7 business days</strong>. All data listed above will be permanently removed.</p>
+    <p style="font-size:.82rem;">We will process your request and confirm deletion within <strong>7 business days</strong>. All data listed above will be permanently removed.</p>
   </div>
 
   <!-- What data is deleted -->
@@ -102,7 +248,7 @@
     <ul>
       <li><strong>Transactions</strong> — all income and expense records</li>
       <li><strong>Budgets</strong> — monthly budget configurations</li>
-      <li><strong>Account balance</strong> — starting balance and adjustments</li>
+      <li><strong>Account balances</strong> — starting balance and adjustments</li>
       <li><strong>Profile info</strong> — display name, email, currency preference</li>
       <li><strong>Cloud data</strong> — entire Firebase Realtime Database entry (<code>users/{uid}</code>)</li>
       <li><strong>Auth account</strong> — Firebase Authentication user record</li>
@@ -110,11 +256,18 @@
     <p style="margin-top:10px;">Anonymized, non-identifiable analytics events (Firebase Analytics) may be retained as they cannot be linked back to you after account deletion.</p>
   </div>
 
-  <div class="footer">
-    <p>Questions? Contact us at <a href="mailto:bhaveshppatil64@gmail.com">bhaveshppatil64@gmail.com</a></p>
-    <p style="margin-top:6px;"><a href="index.html">← Back to Legal</a> &nbsp;·&nbsp; <a href="privacy_policy.html">Privacy Policy</a></p>
-  </div>
-
 </div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 DhanTrack · Built with ❤️ in Kotlin</p>
+  <div class="footer-links">
+    <a href="https://bit.ly/dhantrack">Play Store</a>
+    <a href="mailto:bhaveshppatil64@gmail.com">Contact</a>
+    <a href="privacy_policy.html">Privacy</a>
+    <a href="terms_and_conditions.html">Terms</a>
+  </div>
+</footer>
+
 </body>
 </html>
