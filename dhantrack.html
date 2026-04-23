@@ -349,6 +349,8 @@
   </a>
   <div class="nav-links">
     <a href="#features">Features</a>
+
+    <a href="#screens">Screens</a>
     <a href="#insights">AI Insights</a>
     <a href="#techstack">Tech Stack</a>
     <a href="#architecture">Architecture</a>
@@ -359,7 +361,7 @@
 
 <!-- HERO -->
 <section class="hero" id="home">
-  <div class="hero-badge">🚀 v1.0.0 — Live on Play Store</div>
+  <div class="hero-badge">🚀 v1.1 — Live on Play Store</div>
   <h1>Track your <span>Dhan.</span><br/>Grow your wealth.</h1>
   <p>
     <em>Dhan (धन) means Wealth in Hindi.</em> DhanTrack is a smart, offline-first personal
@@ -367,7 +369,7 @@
     grow. No bank credentials. No ads. Just you and your money.
   </p>
   <div class="hero-actions">
-    <a href="https://bit.ly/dhantrack" class="btn-primary">
+    <a href="https://play.google.com/apps/internaltest/4700993076247854895" class="btn-primary">
       ▶&nbsp; Get it on Play Store
     </a>
     <a href="#features" class="btn-secondary">
@@ -375,6 +377,7 @@
     </a>
   </div>
   <div class="hero-stats">
+    <div class="stat"><div class="stat-num">14</div><div class="stat-label">Features</div></div>
     <div class="stat"><div class="stat-num">8</div><div class="stat-label">Categories</div></div>
     <div class="stat"><div class="stat-num">10</div><div class="stat-label">Currencies</div></div>
     <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Offline First</div></div>
@@ -387,70 +390,105 @@
   <div class="section-header center reveal">
     <span class="section-label">What it does</span>
     <h2 class="section-title">Everything you need to own your finances</h2>
-    <p class="section-sub">Nine powerful features, one beautifully designed app — built entirely in Kotlin and Jetpack Compose.</p>
+    <p class="section-sub">14 powerful features, one beautifully designed app — built entirely in Kotlin and Jetpack Compose.</p>
   </div>
   <div class="features-grid">
 
     <div class="feature-card reveal">
       <div class="feature-icon">💰</div>
       <h3>Expense Tracking</h3>
-      <p>Log expenses in seconds. Pick a category, enter an amount, done. Swipe to delete. Zero friction.</p>
-      <span class="feature-tag">8 categories</span>
+      <p>Log expenses in seconds with a date picker, category selector, and amount field. Swipe to delete. Re-categorise any transaction on the fly. Zero friction.</p>
+      <span class="feature-tag">8 categories · Swipe-to-delete</span>
     </div>
 
     <div class="feature-card reveal">
       <div class="feature-icon">🎯</div>
       <h3>Smart Budgeting</h3>
-      <p>Set monthly budgets per category. Animated progress bars shift Green → Yellow → Red as you approach limits.</p>
-      <span class="feature-tag">Intentional friction</span>
+      <p>Set monthly budgets per category. Animated progress bars shift Green → Yellow → Red as you approach limits. Budgets auto-reset on the 1st of each month with a New Month banner.</p>
+      <span class="feature-tag">3 edits/month · Auto-reset</span>
     </div>
 
     <div class="feature-card reveal">
       <div class="feature-icon">🤖</div>
       <h3>AI Budget Insights</h3>
-      <p>Personalised, actionable advice based on your real spending patterns — colour-coded by severity.</p>
-      <span class="feature-tag">Critical · Warning · Tip · Positive</span>
+      <p>Personalised, actionable advice based on your real spending patterns — colour-coded by severity (Critical, Warning, Tip, Positive, Info). Powered by Gemini AI.</p>
+      <span class="feature-tag">5 severity levels · Gemini-powered</span>
     </div>
 
     <div class="feature-card reveal">
       <div class="feature-icon">📊</div>
       <h3>Monthly Reports & Charts</h3>
-      <p>Fully custom bar chart built with Compose Canvas — zero third-party libraries. Drill into any month for breakdowns.</p>
-      <span class="feature-tag">Hand-drawn with Canvas</span>
+      <p>Year selector, interactive bar chart (Compose Canvas), year summary card, month-over-month spend comparison, account balances with Self/Family tabs, and drill-down month detail with category breakdowns.</p>
+      <span class="feature-tag">Canvas charts · Year/month drill-down</span>
     </div>
 
     <div class="feature-card reveal">
       <div class="feature-icon">🏦</div>
       <h3>Account Balance Tracking</h3>
-      <p>Log savings and demat account balances per bank, per month. Watch net worth move alongside your spending.</p>
-      <span class="feature-tag">Multi-bank support</span>
+      <p>Log savings and demat account balances per bank, per month. Track Self and Family member balances separately. Watch net worth move alongside your spending.</p>
+      <span class="feature-tag">Multi-bank · Self + Family tabs</span>
+    </div>
+
+    <div class="feature-card reveal">
+      <div class="feature-icon">📩</div>
+      <h3>SMS Auto-Import</h3>
+      <p>Automatically reads and parses Indian bank transaction SMS messages from the last 90 days. Zero manual entry — transactions are categorised and logged instantly.</p>
+      <span class="feature-tag">90-day scan · Indian banks</span>
+    </div>
+
+    <div class="feature-card reveal">
+      <div class="feature-icon">🔔</div>
+      <h3>Smart Push Notifications</h3>
+      <p>Daily expense reminders and weekly spending summaries delivered via WorkManager. Firebase Cloud Messaging for real-time server-triggered alerts. Proactive nudges, not noise.</p>
+      <span class="feature-tag">Daily · Weekly · FCM</span>
     </div>
 
     <div class="feature-card reveal">
       <div class="feature-icon">🏠</div>
       <h3>Home Screen Widget</h3>
-      <p>Built with Jetpack Glance. Total spent, budget left, and spending status — right on your home screen.</p>
-      <span class="feature-tag">Jetpack Glance API</span>
+      <p>Built with Jetpack Glance. Total spent, budget left, and spending status — right on your home screen. Auto-updates via a dedicated WidgetUpdateWorker.</p>
+      <span class="feature-tag">Glance API · Auto-refresh</span>
     </div>
 
     <div class="feature-card reveal">
       <div class="feature-icon">🌍</div>
       <h3>Multi-Currency Support</h3>
-      <p>10 currencies supported including INR, USD, EUR, GBP, JPY, AED, SGD, AUD, CAD, and CHF.</p>
+      <p>10 currencies supported including INR, USD, EUR, GBP, JPY, AED, SGD, AUD, CAD, and CHF. Switch anytime from the Profile screen.</p>
       <span class="feature-tag">10 currencies</span>
     </div>
 
     <div class="feature-card reveal">
       <div class="feature-icon">☁️</div>
       <h3>Offline-first + Cloud Sync</h3>
-      <p>Works 100% offline. Auto-syncs to Firebase every 24 hours via WorkManager. Switch phones without losing data.</p>
-      <span class="feature-tag">Firebase + WorkManager</span>
+      <p>Works 100% offline with Room DB. Auto-syncs to Firebase Realtime Database via a periodic SyncWorker. Switch phones without losing data.</p>
+      <span class="feature-tag">Room + Firebase + WorkManager</span>
+    </div>
+
+    <div class="feature-card reveal">
+      <div class="feature-icon">🔄</div>
+      <h3>Pull-to-Refresh Everywhere</h3>
+      <p>Every major screen supports pull-to-refresh with haptic feedback. Manually trigger a cloud sync and reload latest data anytime you want.</p>
+      <span class="feature-tag">Haptic feedback · All screens</span>
+    </div>
+
+    <div class="feature-card reveal">
+      <div class="feature-icon">🔗</div>
+      <h3>Deep Links</h3>
+      <p>Navigate directly to specific screens within the app via deep link URLs. Open dashboard, reports, or profile from notifications or external links.</p>
+      <span class="feature-tag">Navigation Compose deep links</span>
+    </div>
+
+    <div class="feature-card reveal">
+      <div class="feature-icon">💬</div>
+      <h3>In-App Feedback</h3>
+      <p>Submit feedback or report bugs directly from the Profile screen with a built-in feedback dialog. No email client needed — it goes straight to the developer.</p>
+      <span class="feature-tag">Built-in dialog</span>
     </div>
 
     <div class="feature-card reveal">
       <div class="feature-icon">🔐</div>
       <h3>Privacy First</h3>
-      <p>No ads. No data selling. 3 auth methods (Email, Phone OTP, Google Sign-In). Full account + data deletion in-app.</p>
+      <p>No ads. No data selling. 3 auth methods (Email, Phone OTP, Google Sign-In). Full account + data deletion in-app. GDPR-friendly by design.</p>
       <span class="feature-tag">GDPR-friendly</span>
     </div>
 
@@ -541,6 +579,64 @@
       <h4>Net worth up ₹8,400 this month</h4>
       <p>Your account balances show a month-over-month increase. Consistent below-budget months in Groceries and Health are paying off. Keep it up! 🎉</p>
     </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SCREEN-BY-SCREEN -->
+<section id="screens" style="background: var(--bg);">
+  <div class="section-header center reveal">
+    <span class="section-label">Screen by Screen</span>
+    <h2 class="section-title">5 screens. Every detail intentional.</h2>
+    <p class="section-sub">Each screen follows a strict MVI contract with its own State, Event, and Effect. Here's what each one does.</p>
+  </div>
+
+  <div class="features-grid">
+
+    <div class="feature-card reveal">
+      <div class="feature-icon">🏠</div>
+      <h3>1. Dashboard</h3>
+      <p>The command centre of DhanTrack. Shows a <strong>summary cards row</strong> (total spent, budget remaining, status), <strong>SMS import banner</strong> for first-time setup, <strong>budget status cards</strong> with per-category progress bars, <strong>recent transactions</strong> with swipe-to-delete, an <strong>AI Budget Helper card</strong> that fetches personalised insights on tap, and an <strong>Add Expense dialog</strong> with category picker and date selector. A <strong>New Month banner</strong> appears on the 1st of each month prompting budget reset.</p>
+      <span class="feature-tag">SummaryCard · BudgetStatus · AI Helper · SMS Banner</span>
+    </div>
+
+    <div class="feature-card reveal">
+      <div class="feature-icon">📋</div>
+      <h3>2. All Transactions</h3>
+      <p>A dedicated full-screen list of every transaction you've logged — filterable and scrollable. Each transaction shows name, amount, category emoji, and date. Swipe to delete with undo via Snackbar. Navigate here from the Dashboard's "View All" link or via deep link.</p>
+      <span class="feature-tag">Full history · Swipe-to-delete · Deep link</span>
+    </div>
+
+    <div class="feature-card reveal" style="border: 1px solid var(--green);">
+      <div class="feature-icon">📊</div>
+      <h3>3. Report Screen — Deep Dive</h3>
+      <p>The most data-rich screen in DhanTrack. It has <strong>6 composable sections</strong>:</p>
+      <p style="margin-top: 10px;">
+        <strong>① Year Selector</strong> — Horizontally scrollable year chips. Tap a year to load that year's data.<br/>
+        <strong>② Monthly Bar Chart</strong> — Custom Compose Canvas bar chart showing spending per month. Tap any bar to navigate to Month Detail. Budget line overlay shows your total monthly budget.<br/>
+        <strong>③ Year Summary Card</strong> — Total yearly spending, average monthly spend, and month-over-month trend.<br/>
+        <strong>④ Month-over-Month Comparison</strong> — Compares selected month's spending vs. the previous month with percentage change.<br/>
+        <strong>⑤ Account Balances</strong> — Self/Family member tabs. Add savings or demat balances per bank per month. Delete balances with a swipe. FAB opens the Add Balance dialog with account type, bank name, amount, and member name fields.<br/>
+        <strong>⑥ Month Detail (drill-down)</strong> — Tapping a bar chart month opens a detail screen with per-category breakdown bars (spent vs. budget), full transaction list for that month, and offline fallback indicator.
+      </p>
+      <span class="feature-tag">6 composable sections · Canvas chart · Self/Family tabs</span>
+    </div>
+
+    <div class="feature-card reveal">
+      <div class="feature-icon">👤</div>
+      <h3>4. Profile Screen</h3>
+      <p>Shows your <strong>profile header</strong> (name, email, auth provider), <strong>stats row</strong> (total transactions, total spent, top category), <strong>currency picker</strong> to switch between 10 currencies, <strong>top spending category card</strong>, <strong>app info card</strong> with version and build, <strong>feedback dialog</strong> to submit bugs/suggestions, <strong>logout</strong>, and <strong>delete account + data</strong> — all in one scroll.</p>
+      <span class="feature-tag">Stats · Currency · Feedback · Delete account</span>
+    </div>
+
+    <div class="feature-card reveal">
+      <div class="feature-icon">🔑</div>
+      <h3>5. Auth Screen</h3>
+      <p>Three sign-in methods on a single screen: <strong>Email/Password</strong> with validation, <strong>Phone OTP</strong> with auto-verification and manual code entry, and <strong>Google Sign-In</strong> via Credential Manager. Animated transitions between sections. MVI contract handles loading, error, and success states.</p>
+      <span class="feature-tag">Email · Phone OTP · Google Sign-In</span>
+    </div>
+
   </div>
 </section>
 
@@ -687,34 +783,16 @@
   <div class="section-header center reveal">
     <span class="section-label">Roadmap</span>
     <h2 class="section-title">What's live & what's coming</h2>
-    <p class="section-sub">v1.0.0 is the foundation. There's a lot more coming — here's what's on the horizon.</p>
+    <p class="section-sub">v1.1 is live with all core features. Here's what's on the horizon.</p>
   </div>
   <div class="roadmap-list">
 
     <div class="roadmap-item reveal">
       <div class="roadmap-left"><div class="roadmap-dot"></div><div class="roadmap-line"></div></div>
       <div class="roadmap-content">
-        <span class="roadmap-status status-live">✅ LIVE — v1.0.0</span>
-        <h4>Core App — Major Features Live</h4>
-        <p>Expense tracking, smart budgeting, AI insights, custom charts, account balances, home widget, multi-currency, offline sync.</p>
-      </div>
-    </div>
-
-    <div class="roadmap-item reveal">
-      <div class="roadmap-left"><div class="roadmap-dot upcoming"></div><div class="roadmap-line"></div></div>
-      <div class="roadmap-content">
-        <span class="roadmap-status status-coming">🔜 COMING SOON — Top Priority</span>
-        <h4>📩 SMS Auto-Import</h4>
-        <p>Every Indian bank sends a transaction SMS. Auto-parsing these means zero manual entry — making DhanTrack a true daily driver.</p>
-      </div>
-    </div>
-
-    <div class="roadmap-item reveal">
-      <div class="roadmap-left"><div class="roadmap-dot upcoming"></div><div class="roadmap-line"></div></div>
-      <div class="roadmap-content">
-        <span class="roadmap-status status-coming">🔜 COMING SOON</span>
-        <h4>🔔 Smart Push Notifications</h4>
-        <p>"You've spent 80% of your Food budget — 12 days still left this month." Proactive nudges, not noise. Powered by WorkManager + Firebase.</p>
+        <span class="roadmap-status status-live">✅ LIVE — v1.1</span>
+        <h4>Core App — All Major Features Shipped</h4>
+        <p>Expense tracking, smart budgeting (3 edits/month, auto-reset), AI insights (Gemini-powered, 5 severity levels), custom Canvas bar charts, year/month drill-down reports, account balances with Self/Family tabs, month-over-month comparison, SMS auto-import (90-day Indian bank SMS parsing), daily reminder &amp; weekly summary push notifications (WorkManager + FCM), home screen widget (Glance API), multi-currency (10 currencies), offline-first + cloud sync, pull-to-refresh with haptics, deep links, in-app feedback, 3 auth methods, full account deletion.</p>
       </div>
     </div>
 
@@ -737,11 +815,20 @@
     </div>
 
     <div class="roadmap-item reveal">
-      <div class="roadmap-left"><div class="roadmap-dot upcoming"></div></div>
+      <div class="roadmap-left"><div class="roadmap-dot upcoming"></div><div class="roadmap-line"></div></div>
       <div class="roadmap-content">
         <span class="roadmap-status status-coming">🔜 PLANNED</span>
         <h4>📤 Export to CSV / PDF</h4>
         <p>Your data, your way. Send it to your CA, your partner, or just keep a record. Full month-by-month export.</p>
+      </div>
+    </div>
+
+    <div class="roadmap-item reveal">
+      <div class="roadmap-left"><div class="roadmap-dot upcoming"></div></div>
+      <div class="roadmap-content">
+        <span class="roadmap-status status-coming">🔜 PLANNED</span>
+        <h4>🔍 Search &amp; Filter Transactions</h4>
+        <p>Search by name, filter by category or date range, and sort transactions — making it easy to find any past expense instantly.</p>
       </div>
     </div>
 
@@ -796,7 +883,7 @@
   <div class="reveal">
     <h2>Ready to take control<br/>of your <span style="color:var(--green)">Dhan?</span></h2>
     <p>Free to download. No subscriptions. No ads. Just clarity.</p>
-    <a href="https://bit.ly/dhantrack" class="store-badge">
+    <a href="https://play.google.com/apps/internaltest/4700993076247854895" class="store-badge">
       ▶&nbsp; Download on Google Play
     </a>
   </div>
@@ -806,7 +893,7 @@
 <footer>
   <p>© 2026 DhanTrack · Built with ❤️ in Kotlin</p>
   <div class="footer-links">
-    <a href="https://bit.ly/dhantrack">Play Store</a>
+    <a href="https://play.google.com/apps/internaltest/4700993076247854895">Play Store</a>
     <a href="mailto:bhaveshppatil64@gmail.com">Contact</a>
     <a href="#privacy">Privacy</a>
   </div>
