@@ -361,7 +361,7 @@
 
 <!-- HERO -->
 <section class="hero" id="home">
-  <div class="hero-badge">🚀 v1.1 — Live on Play Store</div>
+  <div class="hero-badge">🚀 v1.0.10 — Live on Play Store</div>
   <h1>Track your <span>Dhan.</span><br/>Grow your wealth.</h1>
   <p>
     <em>Dhan (धन) means Wealth in Hindi.</em> DhanTrack is a smart, offline-first personal
@@ -398,7 +398,7 @@
       <div class="feature-icon">💰</div>
       <h3>Expense Tracking</h3>
       <p>Log expenses in seconds with a date picker, category selector, and amount field. Swipe to delete. Re-categorise any transaction on the fly. Zero friction.</p>
-      <span class="feature-tag">8 categories · Swipe-to-delete</span>
+      <span class="feature-tag">15 categories · Swipe-to-delete</span>
     </div>
 
     <div class="feature-card reveal">
@@ -418,7 +418,7 @@
     <div class="feature-card reveal">
       <div class="feature-icon">📊</div>
       <h3>Monthly Reports & Charts</h3>
-      <p>Year selector, interactive bar chart (Compose Canvas), year summary card, month-over-month spend comparison, account balances with Self/Family tabs, and drill-down month detail with category breakdowns.</p>
+      <p>Year selector, interactive bar chart (Compose Canvas), year summary card, month-over-month spend comparison, account balances with Self/Family summary cards, and drill-down month detail with category breakdowns.</p>
       <span class="feature-tag">Canvas charts · Year/month drill-down</span>
     </div>
 
@@ -426,7 +426,7 @@
       <div class="feature-icon">🏦</div>
       <h3>Account Balance Tracking</h3>
       <p>Log savings and demat account balances per bank, per month. Track Self and Family member balances separately. Watch net worth move alongside your spending.</p>
-      <span class="feature-tag">Multi-bank · Self + Family tabs</span>
+      <span class="feature-tag">Multi-bank · Self + Family summary cards</span>
     </div>
 
     <div class="feature-card reveal">
@@ -597,8 +597,8 @@
     <div class="feature-card reveal">
       <div class="feature-icon">🏠</div>
       <h3>1. Dashboard</h3>
-      <p>The command centre of DhanTrack. Shows a <strong>summary cards row</strong> (total spent, budget remaining, status), <strong>SMS import banner</strong> for first-time setup, <strong>budget status cards</strong> with per-category progress bars, <strong>recent transactions</strong> with swipe-to-delete, an <strong>AI Budget Helper card</strong> that fetches personalised insights on tap, and an <strong>Add Expense dialog</strong> with category picker and date selector. A <strong>New Month banner</strong> appears on the 1st of each month prompting budget reset.</p>
-      <span class="feature-tag">SummaryCard · BudgetStatus · AI Helper · SMS Banner</span>
+      <p>The command centre of DhanTrack. Shows a <strong>Today's Spend card</strong> flagging days you're spending above your daily average, a <strong>summary cards row</strong> (total spent, budget remaining, status), <strong>SMS import banner</strong> for first-time setup, <strong>budget status cards</strong> with per-category progress bars, a <strong>category spending donut chart</strong> breaking down where your money goes, <strong>recent transactions</strong> with swipe-to-delete, an <strong>AI Budget Helper card</strong> that fetches personalised insights on tap, and an <strong>Add Expense dialog</strong> with category picker and date selector. A <strong>New Month banner</strong> appears on the 1st of each month prompting budget reset.</p>
+      <span class="feature-tag">Today's Spend · Category Donut · BudgetStatus · AI Helper</span>
     </div>
 
     <div class="feature-card reveal">
@@ -617,17 +617,17 @@
         <strong>② Monthly Bar Chart</strong> — Custom Compose Canvas bar chart showing spending per month. Tap any bar to navigate to Month Detail. Budget line overlay shows your total monthly budget.<br/>
         <strong>③ Year Summary Card</strong> — Total yearly spending, average monthly spend, and month-over-month trend.<br/>
         <strong>④ Month-over-Month Comparison</strong> — Compares selected month's spending vs. the previous month with percentage change.<br/>
-        <strong>⑤ Account Balances</strong> — Self/Family member tabs. Add savings or demat balances per bank per month. Delete balances with a swipe. FAB opens the Add Balance dialog with account type, bank name, amount, and member name fields.<br/>
+        <strong>⑤ Account Balances</strong> — Toggleable <strong>Self / Family summary cards</strong> showing total balance and account count per side. Add savings or demat balances per bank per month, delete balances with a swipe. FAB opens the Add Balance dialog with account type, bank name, amount, and member name fields.<br/>
         <strong>⑥ Month Detail (drill-down)</strong> — Tapping a bar chart month opens a detail screen with per-category breakdown bars (spent vs. budget), full transaction list for that month, and offline fallback indicator.
       </p>
-      <span class="feature-tag">6 composable sections · Canvas chart · Self/Family tabs</span>
+      <span class="feature-tag">6 composable sections · Canvas chart · Self/Family summary cards</span>
     </div>
 
     <div class="feature-card reveal">
       <div class="feature-icon">👤</div>
       <h3>4. Profile Screen</h3>
-      <p>Shows your <strong>profile header</strong> (name, email, auth provider), <strong>stats row</strong> (total transactions, total spent, top category), <strong>currency picker</strong> to switch between 10 currencies, <strong>top spending category card</strong>, <strong>app info card</strong> with version and build, <strong>feedback dialog</strong> to submit bugs/suggestions, <strong>logout</strong>, and <strong>delete account + data</strong> — all in one scroll.</p>
-      <span class="feature-tag">Stats · Currency · Feedback · Delete account</span>
+      <p>Shows your <strong>profile header</strong> (name, email, auth provider), <strong>stats row</strong> (total transactions, total spent, top category), <strong>currency picker</strong> to switch between 10 currencies, <strong>top spending category card</strong>, <strong>app info card</strong> with version/build and a <strong>"Learn about DhanTrack"</strong> guided walkthrough (5-step onboarding stepper covering SMS import, budgets, reports, and alerts), <strong>feedback dialog</strong> to submit bugs/suggestions, <strong>logout</strong>, and <strong>delete account + data</strong> — all in one scroll.</p>
+      <span class="feature-tag">Stats · Currency · App Walkthrough · Delete account</span>
     </div>
 
     <div class="feature-card reveal">
@@ -783,16 +783,34 @@
   <div class="section-header center reveal">
     <span class="section-label">Roadmap</span>
     <h2 class="section-title">What's live & what's coming</h2>
-    <p class="section-sub">v1.1 is live with all core features. Here's what's on the horizon.</p>
+    <p class="section-sub">v1.0.10 is live with all core features. Here's what's on the horizon.</p>
   </div>
   <div class="roadmap-list">
 
     <div class="roadmap-item reveal">
       <div class="roadmap-left"><div class="roadmap-dot"></div><div class="roadmap-line"></div></div>
       <div class="roadmap-content">
-        <span class="roadmap-status status-live">✅ LIVE — v1.1</span>
+        <span class="roadmap-status status-live">✅ LIVE — v1.0.10</span>
         <h4>Core App — All Major Features Shipped</h4>
-        <p>Expense tracking, smart budgeting (3 edits/month, auto-reset), AI insights (Gemini-powered, 5 severity levels), custom Canvas bar charts, year/month drill-down reports, account balances with Self/Family tabs, month-over-month comparison, SMS auto-import (90-day Indian bank SMS parsing), daily reminder &amp; weekly summary push notifications (WorkManager + FCM), home screen widget (Glance API), multi-currency (10 currencies), offline-first + cloud sync, pull-to-refresh with haptics, deep links, in-app feedback, 3 auth methods, full account deletion.</p>
+        <p>Expense tracking (15 categories), smart budgeting (3 edits/month, auto-reset), AI insights (Gemini-powered, 5 severity levels), custom Canvas bar charts, year/month drill-down reports, account balances with Self/Family summary cards, month-over-month comparison, SMS auto-import (90-day Indian bank SMS parsing), daily reminder &amp; weekly summary push notifications (WorkManager + FCM), home screen widget (Glance API), multi-currency (10 currencies), offline-first + cloud sync, pull-to-refresh with haptics, deep links, in-app feedback, 3 auth methods, full account deletion.</p>
+      </div>
+    </div>
+
+    <div class="roadmap-item reveal">
+      <div class="roadmap-left"><div class="roadmap-dot"></div><div class="roadmap-line"></div></div>
+      <div class="roadmap-content">
+        <span class="roadmap-status status-live">✅ LIVE — v1.0.10</span>
+        <h4>🛡️ Reliability &amp; Permission Handling</h4>
+        <p>Fixed a sync bug where deleted transactions could reappear after refresh. Added proactive detection of Android's permission auto-revoke (the OS feature that silently strips SMS access after months of inactivity), an in-app warning banner before it happens, and a guided one-tap flow to the exact Settings screen that fixes it — so SMS auto-import keeps working even if you don't open the app daily.</p>
+      </div>
+    </div>
+
+    <div class="roadmap-item reveal">
+      <div class="roadmap-left"><div class="roadmap-dot"></div><div class="roadmap-line"></div></div>
+      <div class="roadmap-content">
+        <span class="roadmap-status status-live">✅ LIVE — v1.0.10</span>
+        <h4>🆕 Today's Spend Card &amp; Guided App Walkthrough</h4>
+        <p>A new Dashboard "Today's Spend" card flags days where you're spending above your daily average, alongside a category spending donut chart. Profile now has a "Learn about DhanTrack" 5-step guided walkthrough covering SMS import, budgets, reports, and smart alerts — revisitable anytime.</p>
       </div>
     </div>
 
