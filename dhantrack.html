@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DhanTrack — Track Your Wealth</title>
-  <meta name="description" content="DhanTrack is a smart, offline-first personal finance app built with Jetpack Compose. Track expenses, set budgets, get AI insights, and watch your net worth grow." />
+  <title>DhanTrack – Budget Manager | Track Your Wealth</title>
+  <meta name="description" content="DhanTrack – Budget Manager helps you track expenses, manage budgets, review reports, and understand your spending with AI-powered insights." />
   <meta property="og:title" content="DhanTrack — Track Your Wealth" />
-  <meta property="og:description" content="Smart expense tracking with AI insights, custom charts, and cloud sync. Built for Indians, works worldwide." />
+  <meta property="og:description" content="Track expenses, manage budgets, view reports, and get AI-powered spending insights with DhanTrack – Budget Manager." />
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,8 +15,8 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --green:   #00C896;
-      --green-d: #00A87E;
+      --green:   #33EEFF;
+      --green-d: #12CFE0;
       --yellow:  #FFB800;
       --red:     #FF4757;
       --bg:      #0A0E1A;
@@ -50,7 +50,7 @@
     .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
     .nav-logo-icon {
       width: 36px; height: 36px; border-radius: 10px;
-      background: linear-gradient(135deg, var(--green), #00E5B0);
+      background: linear-gradient(135deg, var(--green), #8AF7FF);
       display: flex; align-items: center; justify-content: center;
       font-size: 18px; font-weight: 800; color: #fff;
     }
@@ -70,14 +70,14 @@
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       text-align: center; padding: 120px 5% 80px;
       background:
-        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(0,200,150,.15), transparent),
-        radial-gradient(ellipse 50% 40% at 80% 80%, rgba(0,200,150,.07), transparent),
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(51,238,255,.15), transparent),
+        radial-gradient(ellipse 50% 40% at 80% 80%, rgba(51,238,255,.07), transparent),
         var(--bg);
       position: relative;
     }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(0,200,150,.12); border: 1px solid rgba(0,200,150,.3);
+      background: rgba(51,238,255,.12); border: 1px solid rgba(51,238,255,.3);
       color: var(--green); padding: 6px 16px; border-radius: 999px;
       font-size: .8rem; font-weight: 600; margin-bottom: 28px; letter-spacing: .04em;
     }
@@ -97,7 +97,7 @@
       border-radius: 10px; font-weight: 700; font-size: 1rem;
       text-decoration: none; transition: all .2s;
     }
-    .btn-primary:hover { background: var(--green-d); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,200,150,.25); }
+    .btn-primary:hover { background: var(--green-d); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(51,238,255,.25); }
     .btn-secondary {
       display: inline-flex; align-items: center; gap: 8px;
       background: transparent; color: var(--text); padding: 14px 28px;
@@ -138,14 +138,14 @@
     .feature-card:hover { border-color: var(--green); transform: translateY(-4px); }
     .feature-icon {
       width: 48px; height: 48px; border-radius: 12px;
-      background: rgba(0,200,150,.12); display: flex; align-items: center;
+      background: rgba(51,238,255,.12); display: flex; align-items: center;
       justify-content: center; font-size: 22px; margin-bottom: 18px;
     }
     .feature-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
     .feature-card p { color: var(--muted); font-size: .9rem; line-height: 1.6; }
     .feature-tag {
       display: inline-block; margin-top: 14px;
-      background: rgba(0,200,150,.1); color: var(--green);
+      background: rgba(51,238,255,.1); color: var(--green);
       font-size: .72rem; font-weight: 600; padding: 3px 10px; border-radius: 999px;
     }
 
@@ -188,7 +188,7 @@
     }
     .insight-card.critical { background: rgba(255,71,87,.07); border-color: var(--red); }
     .insight-card.warning  { background: rgba(255,184,0,.07); border-color: var(--yellow); }
-    .insight-card.tip      { background: rgba(0,200,150,.07); border-color: var(--green); }
+    .insight-card.tip      { background: rgba(51,238,255,.07); border-color: var(--green); }
     .insight-card.positive { background: rgba(100,200,255,.07); border-color: #64C8FF; }
     .insight-badge {
       display: inline-block; font-size: .68rem; font-weight: 700;
@@ -196,7 +196,7 @@
     }
     .insight-card.critical .insight-badge { background: rgba(255,71,87,.2); color: var(--red); }
     .insight-card.warning  .insight-badge { background: rgba(255,184,0,.2); color: var(--yellow); }
-    .insight-card.tip      .insight-badge { background: rgba(0,200,150,.2); color: var(--green); }
+    .insight-card.tip      .insight-badge { background: rgba(51,238,255,.2); color: var(--green); }
     .insight-card.positive .insight-badge { background: rgba(100,200,255,.2); color: #64C8FF; }
     .insight-card h4 { font-size: .95rem; font-weight: 700; margin-bottom: 6px; }
     .insight-card p  { font-size: .85rem; color: var(--muted); line-height: 1.5; }
@@ -226,7 +226,7 @@
     }
     .module-tag {
       font-family: 'JetBrains Mono', monospace; font-size: .8rem; font-weight: 600;
-      background: rgba(0,200,150,.1); color: var(--green); padding: 4px 12px;
+      background: rgba(51,238,255,.1); color: var(--green); padding: 4px 12px;
       border-radius: 6px; flex-shrink: 0; min-width: 130px; text-align: center;
     }
     .module-desc { font-size: .88rem; color: var(--muted); }
@@ -247,22 +247,10 @@
     }
     .mvi-s { background: rgba(100,200,255,.15); color: #64C8FF; }
     .mvi-e { background: rgba(255,184,0,.15); color: var(--yellow); }
-    .mvi-ef{ background: rgba(0,200,150,.15); color: var(--green); }
+    .mvi-ef{ background: rgba(51,238,255,.15); color: var(--green); }
     .mvi-step p { font-size: .88rem; color: var(--muted); }
     .mvi-step strong { color: var(--text); }
     .mvi-arrow { text-align: center; color: var(--muted); font-size: 1.2rem; }
-
-    /* ── CURRENCY ── */
-    #currencies { background: var(--bg); }
-    .currency-grid { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 40px; }
-    .currency-pill {
-      background: var(--bg3); border: 1px solid var(--border);
-      border-radius: 999px; padding: 10px 22px;
-      font-size: .95rem; font-weight: 600; display: flex; align-items: center; gap: 8px;
-      transition: all .2s;
-    }
-    .currency-pill:hover { border-color: var(--green); color: var(--green); }
-    .currency-symbol { color: var(--green); font-size: 1.1rem; }
 
     /* ── ROADMAP ── */
     #roadmap { background: var(--bg2); }
@@ -281,7 +269,7 @@
       display: inline-block; font-size: .68rem; font-weight: 700; letter-spacing: .08em;
       padding: 3px 10px; border-radius: 999px; margin-bottom: 8px;
     }
-    .status-live { background: rgba(0,200,150,.15); color: var(--green); }
+    .status-live { background: rgba(51,238,255,.15); color: var(--green); }
     .status-coming { background: rgba(255,184,0,.15); color: var(--yellow); }
     .roadmap-content h4 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
     .roadmap-content p { font-size: .88rem; color: var(--muted); }
@@ -296,10 +284,13 @@
     .privacy-card .icon { font-size: 2rem; margin-bottom: 12px; }
     .privacy-card h4 { font-size: .95rem; font-weight: 700; margin-bottom: 8px; }
     .privacy-card p { font-size: .85rem; color: var(--muted); }
+    .privacy-note { max-width: 900px; margin: 32px auto 0; padding: 24px; border: 1px solid var(--border); border-radius: var(--card-r); background: var(--bg2); }
+    .privacy-note h3 { margin-bottom: 8px; font-size: 1rem; }
+    .privacy-note p { color: var(--muted); font-size: .88rem; }
 
     /* ── CTA ── */
     #download {
-      background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(0,200,150,.12), transparent), var(--bg2);
+      background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(51,238,255,.12), transparent), var(--bg2);
       text-align: center; padding: 120px 5%;
     }
     #download h2 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; margin-bottom: 20px; }
@@ -310,7 +301,7 @@
       border-radius: 12px; text-decoration: none; font-weight: 700;
       transition: all .2s; font-size: 1rem;
     }
-    .store-badge:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,200,150,.2); }
+    .store-badge:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(51,238,255,.2); }
 
     /* ── FOOTER ── */
     footer {
@@ -355,21 +346,22 @@
     <a href="#techstack">Tech Stack</a>
     <a href="#architecture">Architecture</a>
     <a href="#roadmap">Roadmap</a>
+    <a href="#privacy">Privacy</a>
     <a href="#download" class="nav-cta">Download</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero" id="home">
-  <div class="hero-badge">🚀 v1.0.10 — Live on Play Store</div>
-  <h1>Track your <span>Dhan.</span><br/>Grow your wealth.</h1>
+  <div class="hero-badge">🚀 v1.2.1 — Live on Google Play</div>
+  <h1>DhanTrack <span>Budget Manager.</span><br/>Know where your money goes.</h1>
   <p>
     <em>Dhan (धन) means Wealth in Hindi.</em> DhanTrack is a smart, offline-first personal
-    finance app — log expenses in seconds, get AI-powered insights, and watch your net worth
-    grow. No bank credentials. No ads. Just you and your money.
+    budget manager — track expenses, set category budgets, review monthly reports, and understand
+    your spending with AI-powered insights. No bank login credentials. No ads. Your money, your clarity.
   </p>
   <div class="hero-actions">
-    <a href="https://play.google.com/apps/internaltest/4700993076247854895" class="btn-primary">
+    <a href="https://play.google.com/store/apps/details?id=com.napzio.dhantrack" class="btn-primary">
       ▶&nbsp; Get it on Play Store
     </a>
     <a href="#features" class="btn-secondary">
@@ -379,8 +371,7 @@
   <div class="hero-stats">
     <div class="stat"><div class="stat-num">14</div><div class="stat-label">Features</div></div>
     <div class="stat"><div class="stat-num">8</div><div class="stat-label">Categories</div></div>
-    <div class="stat"><div class="stat-num">10</div><div class="stat-label">Currencies</div></div>
-    <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Offline First</div></div>
+    <div class="stat"><div class="stat-num">Offline</div><div class="stat-label">First design</div></div>
     <div class="stat"><div class="stat-num">0</div><div class="stat-label">Ads</div></div>
   </div>
 </section>
@@ -389,8 +380,8 @@
 <section id="features">
   <div class="section-header center reveal">
     <span class="section-label">What it does</span>
-    <h2 class="section-title">Everything you need to own your finances</h2>
-    <p class="section-sub">14 powerful features, one beautifully designed app — built entirely in Kotlin and Jetpack Compose.</p>
+    <h2 class="section-title">Everything you need to manage your money</h2>
+    <p class="section-sub">A focused set of tools to help you understand spending, stay within budgets, and track your finances.</p>
   </div>
   <div class="features-grid">
 
@@ -432,8 +423,8 @@
     <div class="feature-card reveal">
       <div class="feature-icon">📩</div>
       <h3>SMS Auto-Import</h3>
-      <p>Automatically reads and parses Indian bank transaction SMS messages from the last 90 days. Zero manual entry — transactions are categorised and logged instantly.</p>
-      <span class="feature-tag">90-day scan · Indian banks</span>
+      <p>With your permission, detects eligible bank debit alerts from SMS and turns them into expense entries, reducing manual tracking. Only transaction-related bank debit alerts are used for this feature; OTPs and unrelated messages are not expense records.</p>
+      <span class="feature-tag">Permission-based · Bank debit alerts</span>
     </div>
 
     <div class="feature-card reveal">
@@ -450,17 +441,11 @@
       <span class="feature-tag">Glance API · Auto-refresh</span>
     </div>
 
-    <div class="feature-card reveal">
-      <div class="feature-icon">🌍</div>
-      <h3>Multi-Currency Support</h3>
-      <p>10 currencies supported including INR, USD, EUR, GBP, JPY, AED, SGD, AUD, CAD, and CHF. Switch anytime from the Profile screen.</p>
-      <span class="feature-tag">10 currencies</span>
-    </div>
 
     <div class="feature-card reveal">
       <div class="feature-icon">☁️</div>
       <h3>Offline-first + Cloud Sync</h3>
-      <p>Works 100% offline with Room DB. Auto-syncs to Firebase Realtime Database via a periodic SyncWorker. Switch phones without losing data.</p>
+      <p>Core expense tracking is designed to work offline with locally stored data. When internet is available, signed-in users can sync supported app data with the cloud.</p>
       <span class="feature-tag">Room + Firebase + WorkManager</span>
     </div>
 
@@ -488,8 +473,8 @@
     <div class="feature-card reveal">
       <div class="feature-icon">🔐</div>
       <h3>Privacy First</h3>
-      <p>No ads. No data selling. 3 auth methods (Email, Phone OTP, Google Sign-In). Full account + data deletion in-app. GDPR-friendly by design.</p>
-      <span class="feature-tag">GDPR-friendly</span>
+      <p>No ads. No data selling. 3 auth methods (Email, Phone OTP, Google Sign-In). Full account + data deletion in-app. Designed with privacy and user control in mind.</p>
+      <span class="feature-tag">Privacy-focused</span>
     </div>
 
   </div>
@@ -626,8 +611,8 @@
     <div class="feature-card reveal">
       <div class="feature-icon">👤</div>
       <h3>4. Profile Screen</h3>
-      <p>Shows your <strong>profile header</strong> (name, email, auth provider), <strong>stats row</strong> (total transactions, total spent, top category), <strong>currency picker</strong> to switch between 10 currencies, <strong>top spending category card</strong>, <strong>app info card</strong> with version/build and a <strong>"Learn about DhanTrack"</strong> guided walkthrough (5-step onboarding stepper covering SMS import, budgets, reports, and alerts), <strong>feedback dialog</strong> to submit bugs/suggestions, <strong>logout</strong>, and <strong>delete account + data</strong> — all in one scroll.</p>
-      <span class="feature-tag">Stats · Currency · App Walkthrough · Delete account</span>
+      <p>Shows your <strong>profile header</strong> (name, email, auth provider), <strong>stats row</strong> (total transactions, total spent, top category), <strong>top spending category card</strong>, <strong>app info card</strong> with version/build and a <strong>"Learn about DhanTrack"</strong> guided walkthrough (5-step onboarding stepper covering SMS import, budgets, reports, and alerts), <strong>feedback dialog</strong> to submit bugs/suggestions, <strong>logout</strong>, and <strong>delete account + data</strong> — all in one scroll.</p>
+      <span class="feature-tag">Stats · App Walkthrough · Delete account</span>
     </div>
 
     <div class="feature-card reveal">
@@ -755,27 +740,6 @@
 
 <div class="divider"></div>
 
-<!-- CURRENCIES -->
-<section id="currencies">
-  <div class="section-header center reveal">
-    <span class="section-label">Multi-Currency</span>
-    <h2 class="section-title">10 currencies. One app.</h2>
-    <p class="section-sub">Track your finances wherever you are in the world. Switch currencies in Settings at any time.</p>
-  </div>
-  <div class="currency-grid">
-    <div class="currency-pill reveal"><span class="currency-symbol">₹</span> INR — Indian Rupee</div>
-    <div class="currency-pill reveal"><span class="currency-symbol">$</span> USD — US Dollar</div>
-    <div class="currency-pill reveal"><span class="currency-symbol">€</span> EUR — Euro</div>
-    <div class="currency-pill reveal"><span class="currency-symbol">£</span> GBP — British Pound</div>
-    <div class="currency-pill reveal"><span class="currency-symbol">¥</span> JPY — Japanese Yen</div>
-    <div class="currency-pill reveal"><span class="currency-symbol">د.إ</span> AED — UAE Dirham</div>
-    <div class="currency-pill reveal"><span class="currency-symbol">S$</span> SGD — Singapore Dollar</div>
-    <div class="currency-pill reveal"><span class="currency-symbol">A$</span> AUD — Australian Dollar</div>
-    <div class="currency-pill reveal"><span class="currency-symbol">C$</span> CAD — Canadian Dollar</div>
-    <div class="currency-pill reveal"><span class="currency-symbol">Fr</span> CHF — Swiss Franc</div>
-  </div>
-</section>
-
 <div class="divider"></div>
 
 <!-- ROADMAP -->
@@ -783,23 +747,23 @@
   <div class="section-header center reveal">
     <span class="section-label">Roadmap</span>
     <h2 class="section-title">What's live & what's coming</h2>
-    <p class="section-sub">v1.0.10 is live with all core features. Here's what's on the horizon.</p>
+    <p class="section-sub">Version 1.2.1 is live. The app continues to evolve with reliability improvements and planned features. Here's what's on the horizon.</p>
   </div>
   <div class="roadmap-list">
 
     <div class="roadmap-item reveal">
       <div class="roadmap-left"><div class="roadmap-dot"></div><div class="roadmap-line"></div></div>
       <div class="roadmap-content">
-        <span class="roadmap-status status-live">✅ LIVE — v1.0.10</span>
+        <span class="roadmap-status status-live">✅ LIVE — v1.2.1</span>
         <h4>Core App — All Major Features Shipped</h4>
-        <p>Expense tracking (15 categories), smart budgeting (3 edits/month, auto-reset), AI insights (Gemini-powered, 5 severity levels), custom Canvas bar charts, year/month drill-down reports, account balances with Self/Family summary cards, month-over-month comparison, SMS auto-import (90-day Indian bank SMS parsing), daily reminder &amp; weekly summary push notifications (WorkManager + FCM), home screen widget (Glance API), multi-currency (10 currencies), offline-first + cloud sync, pull-to-refresh with haptics, deep links, in-app feedback, 3 auth methods, full account deletion.</p>
+        <p>Expense tracking (15 categories), smart budgeting (3 edits/month, auto-reset), AI insights (Gemini-powered, 5 severity levels), custom Canvas bar charts, year/month drill-down reports, account balances with Self/Family summary cards, month-over-month comparison, permission-based bank debit SMS import, daily reminder &amp; weekly summary push notifications (WorkManager + FCM), home screen widget (Glance API), offline-first + cloud sync, pull-to-refresh with haptics, deep links, in-app feedback, 3 auth methods, full account deletion.</p>
       </div>
     </div>
 
     <div class="roadmap-item reveal">
       <div class="roadmap-left"><div class="roadmap-dot"></div><div class="roadmap-line"></div></div>
       <div class="roadmap-content">
-        <span class="roadmap-status status-live">✅ LIVE — v1.0.10</span>
+        <span class="roadmap-status status-live">✅ LIVE — v1.2.1</span>
         <h4>🛡️ Reliability &amp; Permission Handling</h4>
         <p>Fixed a sync bug where deleted transactions could reappear after refresh. Added proactive detection of Android's permission auto-revoke (the OS feature that silently strips SMS access after months of inactivity), an in-app warning banner before it happens, and a guided one-tap flow to the exact Settings screen that fixes it — so SMS auto-import keeps working even if you don't open the app daily.</p>
       </div>
@@ -808,7 +772,7 @@
     <div class="roadmap-item reveal">
       <div class="roadmap-left"><div class="roadmap-dot"></div><div class="roadmap-line"></div></div>
       <div class="roadmap-content">
-        <span class="roadmap-status status-live">✅ LIVE — v1.0.10</span>
+        <span class="roadmap-status status-live">✅ LIVE — v1.2.1</span>
         <h4>🆕 Today's Spend Card &amp; Guided App Walkthrough</h4>
         <p>A new Dashboard "Today's Spend" card flags days where you're spending above your daily average, alongside a category spending donut chart. Profile now has a "Learn about DhanTrack" 5-step guided walkthrough covering SMS import, budgets, reports, and smart alerts — revisitable anytime.</p>
       </div>
@@ -858,41 +822,60 @@
 <!-- PRIVACY -->
 <section id="privacy">
   <div class="section-header center reveal">
-    <span class="section-label">Privacy & Security</span>
-    <h2 class="section-title">Your data belongs to you</h2>
-    <p class="section-sub">DhanTrack was designed from day one with privacy as a non-negotiable.</p>
+    <span class="section-label">Privacy &amp; Security</span>
+    <h2 class="section-title">Your financial data deserves transparency</h2>
+    <p class="section-sub">Here is what DhanTrack accesses, what it uses, and the choices that remain in your hands.</p>
   </div>
   <div class="privacy-grid">
     <div class="privacy-card reveal">
+      <div class="icon">📩</div>
+      <h4>SMS access is for expense detection</h4>
+      <p>DhanTrack only reads and processes eligible bank debit transaction SMS to automatically record expenses. It extracts only three details: the transaction source or recipient name, transaction date, and debited amount. No other SMS messages are read or parsed for expense tracking.</p>
+    </div>
+    <div class="privacy-card reveal">
+      <div class="icon">🔐</div>
+      <h4>No bank login access</h4>
+      <p>DhanTrack does not ask for your internet banking password, UPI PIN, card PIN, or bank login credentials. SMS-based import reads transaction alerts available on your device.</p>
+    </div>
+    <div class="privacy-card reveal">
+      <div class="icon">📱</div>
+      <h4>Local data &amp; offline use</h4>
+      <p>Expense tracking is designed to work offline, with app data stored locally on your device. An internet connection is needed for cloud sync and online services.</p>
+    </div>
+    <div class="privacy-card reveal">
+      <div class="icon">☁️</div>
+      <h4>Cloud sync</h4>
+      <p>When you sign in and use sync features, supported app data may be sent to DhanTrack's cloud services to back up and synchronise your records across devices.</p>
+    </div>
+    <div class="privacy-card reveal">
+      <div class="icon">🤖</div>
+      <h4>AI-powered insights</h4>
+      <p>When you request AI insights, relevant spending and budget information is processed to generate recommendations. This feature relies on an external AI service (Google Gemini); avoid entering information you do not want processed for this purpose.</p>
+    </div>
+    <div class="privacy-card reveal">
       <div class="icon">🚫</div>
-      <h4>Zero Ads</h4>
-      <p>No advertising SDK. No third-party ad networks. No sponsored content. Ever.</p>
+      <h4>No ads or data selling</h4>
+      <p>DhanTrack is ad-free. We do not sell your personal financial data or use it for advertising. Data is used to provide and improve the app's features and services.</p>
     </div>
     <div class="privacy-card reveal">
-      <div class="icon">🏦</div>
-      <h4>No Bank Credentials</h4>
-      <p>DhanTrack never asks for your bank login, account number, or any sensitive financial credential.</p>
-    </div>
-    <div class="privacy-card reveal">
-      <div class="icon">📵</div>
-      <h4>No Data Selling</h4>
-      <p>Your spending data is yours. It is never sold, shared, or monetised in any way.</p>
-    </div>
-    <div class="privacy-card reveal">
-      <div class="icon">🔑</div>
-      <h4>3 Auth Methods</h4>
-      <p>Sign in with Email/Password, Phone OTP, or Google Sign-In — whichever you're most comfortable with.</p>
+      <div class="icon">🛡️</div>
+      <h4>Limited permissions</h4>
+      <p>DhanTrack does not request call-log permissions. SMS access is requested for the bank transaction import feature and can be managed from your Android app settings.</p>
     </div>
     <div class="privacy-card reveal">
       <div class="icon">🗑️</div>
-      <h4>Full Data Deletion</h4>
-      <p>Delete your entire account and all associated data right from inside the app. No email required.</p>
+      <h4>Account &amp; data deletion</h4>
+      <p>You can initiate account deletion from within the app. This is intended to remove your account and associated DhanTrack data. Keep a copy of anything you want to retain before deleting your account.</p>
     </div>
     <div class="privacy-card reveal">
-      <div class="icon">📶</div>
-      <h4>Offline First</h4>
-      <p>Everything works without internet. Cloud sync is optional and transparent — not a requirement.</p>
+      <div class="icon">🔑</div>
+      <h4>Sign-in choices</h4>
+      <p>Choose from Email/Password, Phone OTP, or Google Sign-In. Authentication is used to secure access to your account and synced data.</p>
     </div>
+  </div>
+  <div class="privacy-note reveal">
+    <h3>Important privacy note</h3>
+    <p>This section is a plain-language summary of DhanTrack's data practices, not a substitute for the full Privacy Policy. Before publishing, link this page to the complete policy and ensure it matches the app's current SDK configuration, backend data flows, retention practices, and Google Play Data safety declarations.</p>
   </div>
 </section>
 
@@ -901,7 +884,7 @@
   <div class="reveal">
     <h2>Ready to take control<br/>of your <span style="color:var(--green)">Dhan?</span></h2>
     <p>Free to download. No subscriptions. No ads. Just clarity.</p>
-    <a href="https://play.google.com/apps/internaltest/4700993076247854895" class="store-badge">
+    <a href="https://play.google.com/store/apps/details?id=com.napzio.dhantrack" class="store-badge">
       ▶&nbsp; Download on Google Play
     </a>
   </div>
@@ -911,7 +894,7 @@
 <footer>
   <p>© 2026 DhanTrack · Built with ❤️ in Kotlin</p>
   <div class="footer-links">
-    <a href="https://play.google.com/apps/internaltest/4700993076247854895">Play Store</a>
+    <a href="https://play.google.com/store/apps/details?id=com.napzio.dhantrack">Play Store</a>
     <a href="mailto:bhaveshppatil64@gmail.com">Contact</a>
     <a href="#privacy">Privacy</a>
   </div>
@@ -928,4 +911,3 @@
 </script>
 </body>
 </html>
-
